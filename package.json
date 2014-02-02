@@ -1,0 +1,19 @@
+{
+  "name": "hatchling",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "coffee app.coffee"
+  },
+  "dependencies": {
+    "express": "*",
+    "jade": "*",
+    "mongoose": "*",
+    "coffee-script": "*",
+    "rehab":"*",
+    "stylus": "*"
+  },
+  "devDependencies": {
+    "devreload": "*"
+  }
+}

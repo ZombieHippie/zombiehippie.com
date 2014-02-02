@@ -1,0 +1,36 @@
+.nav-drawer
+  absolute top bottom left
+.nav-toggle
+  absolute top left
+  top 20px
+  left 20px
+  z-index 1
+
+.nav-toggle
+#page
+  transition: transform .4s ease, opacity .4s ease
+  opacity: 1
+  transform: translate3d(0,0,0)
+
+
+#page-overlay
+#page
+  width 100%
+  height 100%
+  absolute top left
+#page-overlay
+  display none
+  /*background rgba(0,0,0,.2)*/
+  z-index 1
+.open-nav
+  .nav-drawer nav
+    width 280px
+  #page-overlay
+    absolute top left bottom right
+    left 280px
+    display block
+  .nav-toggle
+    opacity 0
+  .nav-toggle
+  #page
+    transform: translate3d(280px,0,0)
