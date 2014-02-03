@@ -9,9 +9,11 @@
     "express": "*",
     "jade": "*",
     "mongoose": "*",
-    "coffee-script": "*",
+    "coffee-script": "1.6.x",
     "rehab":"*",
-    "stylus": "*"
+    "nib":"*",
+    "stylus": "*",
+    "methodder": ">=0.0.2"
   },
   "devDependencies": {
     "devreload": "*"

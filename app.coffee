@@ -22,7 +22,7 @@ app.use(express.json())
 app.use(express.urlencoded())
 app.use(express.methodOverride())
 app.use(app.router)
-app.use(express.static(path.join(__dirname, 'bin')))
+app.use(express.static(path.join(__dirname, 'static')))
 
 app.use(express.bodyParser()) #parses json, multi-part (file), url-encoded
 app.use(express.cookieParser('the truth')) #parses session cookies
@@ -30,10 +30,10 @@ app.use(express.session())
 
 
 # development only
-if app.get 'env' is 'development'
+if app.get('env') is 'development'
 	app.use(express.errorHandler())
 	# Use devreload for automatic reloading
-	devreload.run {
+	devreload.listen app, {
 		watch:[__dirname+'/src',__dirname+'/static',__dirname+'/routes'],
 		interval:500, port:9999
 	}
@@ -41,10 +41,11 @@ if app.get 'env' is 'development'
 # Setup MongoDB
 mongoose.connect 'mongodb://localhost/app'
 db = {}
-db.User = mongoose.model 'User', require './models/User', 'users'
+db["User"] = mongoose.model 'User', require './models/User', 'users'
 
 # Routes
-require('./routes')(app, db)
+routes = require('./routes')
+new routes app, db
 
-http.createServer(app).listen app.get 'port', ->
+http.createServer(app).listen app.get('port'), ->
 	console.log 'Express server listening on port ' + app.get 'port'

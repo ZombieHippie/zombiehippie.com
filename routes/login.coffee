@@ -1,10 +1,11 @@
 hash = require('../pass').hash
+m = require 'methodder'
 #Database
 module.exports = class Login
 	constructor:(@app, @db)->
-		@app.get '/login', @get
-		@app.post '/login', @post
-		@app.all '/logout', @logout
+		@app.get '/login', new m @get, @
+		@app.post '/login', new m @post, @
+		@app.all '/logout', new m @logout, @
 	get: (req, res)=>
 		res.render 'login.jade', {
 				title: 'Log in'
@@ -25,7 +26,7 @@ module.exports = class Login
 			else
 				res.redirect '/login'
 
-	logout: (req, res)->
+	logout: (req, res)=>
 		# destroy the user's session to log them out
 		# will be re-created next request
 		req.session.destroy ->

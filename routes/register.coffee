@@ -1,7 +1,8 @@
+m = require 'methodder'
 module.exports = class Register
 	constructor: (@app, @db)->
-		@app.get '/register', @get
-		@app.post '/register', @post
+		@app.get '/register', new m @get, @
+		@app.post '/register', new m @post, @
 	get: (req,res) =>
 		res.render 'register.jade', {
 				title: 'Register'

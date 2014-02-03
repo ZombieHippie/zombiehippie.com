@@ -2,21 +2,20 @@ doctype html
 html
 	head
 		title= title
-		link(rel='stylesheet', href='/css/vendor.css')
+		link(rel='stylesheet', href='/css/vendors.css')
 		block head
 	body
 		.nav-drawer
 			button.nav-toggle Navigation
 			nav
-				-var links={Home:"/",Login:"/login",Logout:"/logout",Register:"/register"}
 				ul.nav
-					each v, k in links
+					each v, k in nav
 						li(style="display:block")
 							a(href=v)=k
 		#page-overlay
 		#page
 			block content
 	footer
-		script(src='/js/vendor.js')
+		script(src='/js/vendors.js')
 		script(src='//localhost:9999/devreload.js')
 		block footer
