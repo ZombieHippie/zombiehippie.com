@@ -8,6 +8,9 @@ module.exports = class Index
 		@login = new (require('./login'))(@app, @db)
 		@register = new (require('./register'))(@app, @db)
 	get: (req, res) ->
-		res.render('index', { title: 'Express' })
+		res.render('index', {
+			title: 'Inkblur'
+			user: req.session.user
+		})
 	post: (req, res) ->
 		console.log req.body

@@ -8,7 +8,7 @@ module.exports = class Login
 		@app.all '/logout', m @logout, @
 	get: (req, res)=>
 		res.render 'login.jade', {
-				title: 'Log in'
+				title: 'Login to Inkblur'
 				user: req.session.user
 				isNew: false}
 	post: (req, res)=>

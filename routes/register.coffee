@@ -7,7 +7,7 @@ module.exports = class Register
 		@app.post '/register', m @post, @
 	get: (req,res) =>
 		res.render 'login.jade', {
-				title: 'Register'
+				title: 'Register to Inkblur'
 				user: req.session.user
 				isNew: true}
 	post: (req,res) =>
