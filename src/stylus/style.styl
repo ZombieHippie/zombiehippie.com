@@ -2,11 +2,15 @@
 
 .nav-drawer
   absolute top bottom left
-.nav-toggle
-  absolute top left
-  top 20px
-  left 20px
-  z-index 1
+  background #191918
+
+.nav-drawer .nav li
+  display block
+  a
+    color #bbbbb8
+    &:hover
+      color white
+      background transparent
 
 #page
   background: white
@@ -16,6 +20,14 @@
   transition: transform .4s ease, opacity .4s ease
   transform: translate3d(0,0,0)
 
+.nav-toggle
+  absolute top left
+  top 20px
+  left 20px
+  z-index 1
+
+.nav-drawer .nav li
+  display block
 
 #page-overlay
 #page
@@ -24,11 +36,12 @@
   fixed top left
 #page-overlay
   display none
-  /*background rgba(0,0,0,.2)*/
   z-index 1
+
+.nav-drawer nav
+  width 280px
+
 .open-nav
-  .nav-drawer nav
-    width 280px
   #page-overlay
     left 280px
     display block
