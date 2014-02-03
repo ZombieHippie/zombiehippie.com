@@ -1,14 +1,12 @@
 extends layout
 
-block head
-	link(rel='stylesheet', href='/css/style.css')
 block content
 	.jumbotron
 		h1#out Hello
 		p#output Hello
 	.container
 		-var nDate = (new Date()).toString()
-		-var posts={Home:{content:"post<br> <a href=\"/Hello\">Darling</a> content",date:nDate},Posts:{content:"post <br><a href=\"/Back\">Back to the basics</a>content",date:nDate},Posts1:{content:"post <br><a href=\"/Back\">Back to the basics</a>content",date:nDate},Posts2:{content:"post <br><a href=\"/Back\">Back to the basics</a>content",date:nDate},Contact:{content:"postcontent",date:nDate}}
+		-var posts={Home:{content:"Look at <a title=\"ZombieHippie.com\" href=\"//zombiehippie.com\">my primary website</a>",date:nDate},Contact:{content:"You can contact me <a href=\"//twitter.com/inkblur\" title=\"@inkblur\">via twitter</a>",date:nDate}}
 		each v, k in posts
 			article
 				header
@@ -16,5 +14,3 @@ block content
 					p=v.date.replace(/(^.*?)\s\d+:.*$/,"$1")
 				section
 					p!=v.content
-block footer
-	script(src='/js/script.js')

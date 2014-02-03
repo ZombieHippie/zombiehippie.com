@@ -13,7 +13,7 @@
     "rehab":"*",
     "nib":"*",
     "stylus": "*",
-    "methodder": ">=0.0.2"
+    "methodder": "0.0.3"
   },
   "devDependencies": {
     "devreload": "*"

@@ -3,6 +3,7 @@ html
 	head
 		title= title
 		link(rel='stylesheet', href='/css/vendors.css')
+		link(rel='stylesheet', href='/css/style.css')
 		block head
 	body
 		.nav-drawer
@@ -12,10 +13,19 @@ html
 					each v, k in nav
 						li(style="display:block")
 							a(href=v)=k
+					if user
+						li(style="display:block")
+							a
+								strong='@'+user.name
+						li(style="display:block")
+							a(href="/logout")="Logout"
+					else
+						li(style="display:block")
+							a(href="/login")="Login"
 		#page-overlay
 		#page
 			block content
 	footer
 		script(src='/js/vendors.js')
-		script(src='//localhost:9999/devreload.js')
+		script(src='/js/script.js')
 		block footer

@@ -8,10 +8,12 @@
   left 20px
   z-index 1
 
+#page
+  background: white
+
 .nav-toggle
 #page
   transition: transform .4s ease, opacity .4s ease
-  opacity: 1
   transform: translate3d(0,0,0)
 
 
@@ -19,7 +21,7 @@
 #page
   width 100%
   height 100%
-  absolute top left
+  fixed top left
 #page-overlay
   display none
   /*background rgba(0,0,0,.2)*/
@@ -28,7 +30,6 @@
   .nav-drawer nav
     width 280px
   #page-overlay
-    absolute top left bottom right
     left 280px
     display block
   .nav-toggle

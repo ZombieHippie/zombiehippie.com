@@ -21,12 +21,13 @@ app.use(express.logger 'dev')
 app.use(express.json())
 app.use(express.urlencoded())
 app.use(express.methodOverride())
-app.use(app.router)
-app.use(express.static(path.join(__dirname, 'static')))
 
 app.use(express.bodyParser()) #parses json, multi-part (file), url-encoded
 app.use(express.cookieParser('the truth')) #parses session cookies
 app.use(express.session())
+
+app.use(app.router)
+app.use(express.static(path.join(__dirname, 'static')))
 
 
 # development only
@@ -41,7 +42,7 @@ if app.get('env') is 'development'
 # Setup MongoDB
 mongoose.connect 'mongodb://localhost/app'
 db = {}
-db["User"] = mongoose.model 'User', require './models/User', 'users'
+db["User"] = mongoose.model 'User', require('./models/User'), 'users'
 
 # Routes
 routes = require('./routes')

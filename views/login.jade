@@ -1,0 +1,17 @@
+extends layout
+
+block content
+	.container
+		style
+			.b{background:#61AAE4}
+			.y{background:#D4DF5D; color:black}
+		h1=isNew?"Register":"Login"
+		form(role="form",method="POST")
+			.form-group
+				input.form-control(name="username",type="text",placeholder="Username")
+				input.form-control(name="password",type="password")
+				if isNew
+					input.btn.btn-success.pull-right(type="submit",value="Register")
+				else
+					input.btn.btn-success.pull-right(type="submit",value="Login")
+					a.btn.btn-default.pull-right(href="/register") I'm new!

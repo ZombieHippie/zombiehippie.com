@@ -1,15 +1,16 @@
 hash = require('../pass').hash
 m = require 'methodder'
-#Database
+
 module.exports = class Login
 	constructor:(@app, @db)->
-		@app.get '/login', new m @get, @
-		@app.post '/login', new m @post, @
-		@app.all '/logout', new m @logout, @
+		@app.get '/login', m @get, @
+		@app.post '/login', m @post, @
+		@app.all '/logout', m @logout, @
 	get: (req, res)=>
 		res.render 'login.jade', {
 				title: 'Log in'
-				user: req.session.user}
+				user: req.session.user
+				isNew: false}
 	post: (req, res)=>
 		@authenticate req.body.username, req.body.password, (err, user)=>
 			if user
@@ -22,9 +23,9 @@ module.exports = class Login
 					# in the session store to be retrieved,
 					# or in this case the entire user object
 					req.session.user = user
-					res.redirect('back')
+					res.redirect('/')
 			else
-				res.redirect '/login'
+				res.redirect '/login?failed'
 
 	logout: (req, res)=>
 		# destroy the user's session to log them out
@@ -33,7 +34,7 @@ module.exports = class Login
 			res.redirect('/')
 
 	authenticate: (name, pass, fn)=>
-		db.User.findOne {name}, 'name salt hash', (err, user) ->
+		@db.User.findOne {name}, 'name salt hash', (err, user) ->
 			return fn(err) if err
 			# query the db for the given username
 			if (!user)

@@ -8,7 +8,7 @@ navEvent = (event)->
   text = event.target.href
   text = text.replace /^(http[s]?:\/\/)\w*\./, '$1sock.'
   say text
-  event.preventDefault()
+  #event.preventDefault()
 $("section p a").on 'click', navEvent
 $("ul.nav li a").on 'click', navEvent
 $(".nav-toggle").on 'click', navToggle
