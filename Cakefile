@@ -38,7 +38,6 @@ buildSrc = ->
 	ensureDir()
 	buildSrcCoffee()
 	buildSrcStylus()
-
 buildSrcCoffee = ->
 	directory = __dirname+"/src/"
 	outputdir = __dirname+"/static/"
