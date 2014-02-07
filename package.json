@@ -1,21 +1,22 @@
 {
   "name": "hatchling",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "start": "coffee app.coffee"
   },
   "dependencies": {
-    "express": "*",
-    "jade": "*",
-    "mongoose": "*",
-    "coffee-script": "1.6.x",
-    "rehab":"*",
-    "nib":"*",
-    "stylus": "*",
+    "express": "3.4.x",
+    "jade": "1.1.x",
+    "mongoose": "3.8.x",
+    "coffee-script": "1.7.x",
+    "rehab2":"0.2.x",
+    "nib":"1.0.x",
+    "stylus": "0.42.x",
+    "nodemon": "1.0.x",
     "methodder": "0.0.3"
   },
   "devDependencies": {
-    "devreload": "*"
+    "devreload": "0.1.0"
   }
 }
