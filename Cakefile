@@ -5,15 +5,11 @@ stylus = require 'stylus'
 R = require 'rehab2'
 nib = require 'nib'
 
-ensureDir = ->
-	try
-		fs.mkdirSync dir = __dirname+'/static'
-		fs.mkdirSync dir + '/css'
-		fs.mkdirSync dir + '/js'
-	catch err
-		return
+try fs.mkdirSync dir = __dirname+'/static'
+try fs.mkdirSync dir + '/css'
+try fs.mkdirSync dir + '/js'
+
 buildVendors = ->
-	ensureDir()
 	directory = __dirname+"/vendor/"
 	outputdir = __dirname+"/static/"
 	cssStr = ""
@@ -35,7 +31,6 @@ buildVendors = ->
 	writeVendorsFiles()
 
 buildSrc = ->
-	ensureDir()
 	buildSrcCoffee()
 	buildSrcStylus()
 buildSrcCoffee = ->
@@ -79,7 +74,6 @@ task 'build', 'populate ./static files', (o)->
 	buildVendors()
 	buildSrc()
 task 'watch', 'watch to build ./static files', (o)->
-	ensureDir()
 	directory = __dirname+"/src/"
 	stylusFW = fs.watch directory + 'stylus/', {interval:500}
 	stylusFW.on 'change', ->
