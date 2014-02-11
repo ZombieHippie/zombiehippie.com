@@ -3,6 +3,7 @@ hatchling
 
 This is a boilerplate for any website that needs a userdatabase.
 
+We use rehab2 for our client side
 
 I created this project in an effort to create the most comprehensible project heirarchy possible.
 
