@@ -1,5 +1,5 @@
 {
-  "name": "hatchling",
+  "name": "zombiehippie.com",
   "version": "0.0.2",
   "private": true,
   "scripts": {
@@ -9,8 +9,8 @@
     "express": "3.4.x",
     "jade": "1.1.x",
     "mongoose": "3.8.x",
-    "coffee-script": "1.7.x",
-    "rehab2":"0.3.5",
+    "coffee-script": ">=1.6.3",
+    "coffeescript-rehab":"0.3.x",
     "nib":"1.0.x",
     "stylus": "0.42.x",
     "nodemon": "1.0.x",
