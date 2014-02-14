@@ -1,5 +1,6 @@
 hash = require('../pass').hash
 m = require 'methodder'
+registration_key = "Q;vi74;7mRWQ4\"1"
 
 module.exports = class Register
 	constructor: (@app, @db)->
@@ -11,6 +12,8 @@ module.exports = class Register
 				user: req.session.user
 				isNew: true}
 	post: (req,res) =>
+		if req.body.key isnt registration_key
+			return res.redirect '/register?failed'
 		@register req.body.username, req.body.password, (err, user)->
 			console.log {err} if err
 			if user
@@ -25,7 +28,7 @@ module.exports = class Register
 					req.session.user = user
 					res.redirect('/')
 			else
-				res.redirect '/register?failed'	
+				res.redirect '/register?failed'
 	register: (name, pass, fn) =>
 		@db.User.findOne {name}, 'name', (err, user) =>
 			return fn(err) if err
