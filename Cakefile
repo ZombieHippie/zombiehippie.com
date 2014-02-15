@@ -2,7 +2,7 @@ fs = require 'fs'
 p = require 'path'
 coffee = require 'coffee-script'
 stylus = require 'stylus'
-R = require 'rehab2'
+R = require 'coffeescript-rehab'
 nib = require 'nib'
 
 try fs.mkdirSync dir = __dirname+'/static'
