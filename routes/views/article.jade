@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	.jumbotron
+		h1#out ZombieHippie
+		p#output the all media collection
+	.container
+		h1=title
+		.row
+			.col-sm-4
+				ol.nav
+					each heading in tableOfContents
+						-var linkTo = "#" + heading.replace(/ /g, '-')
+						li
+							a(href=linkTo)=heading
+			.col-sm-8=contents

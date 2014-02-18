@@ -2,7 +2,11 @@ m = require 'methodder'
 module.exports = class Index
 	constructor:(@app, @db)->
 		# navigation bar
-		@app.locals nav:{Home:"/"}
+		@app.locals {
+			nav:{Home:"/"},
+			site_name:"Media by Cole Lawrence (ZombieHippie)",
+			author:"Cole Lawrence"
+		}
 		@app.get '/', m @get, @
 		@app.post '/', m @post, @
 		@login = new (require('./login'))(@app, @db)
