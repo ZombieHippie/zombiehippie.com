@@ -9,6 +9,7 @@ module.exports = class Index
 		}
 		@app.get '/', m @get, @
 		@app.post '/', m @post, @
+		@article = new (require('./article'))(@app, @db)
 		@login = new (require('./login'))(@app, @db)
 		@register = new (require('./register'))(@app, @db)
 		@write = new (require('./write'))(@app, @db)
