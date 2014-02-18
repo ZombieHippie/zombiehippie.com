@@ -5,12 +5,13 @@ block content
 		h1#out ZombieHippie
 		p#output the all media collection
 	.container
-		h1=title
+		.row.page-header
+			h1=title
 		.row
-			.col-sm-4
+			.col-sm-3
 				ol.nav
 					each heading in tableOfContents
 						-var linkTo = "#" + heading.replace(/ /g, '-')
 						li
 							a(href=linkTo)=heading
-			.col-sm-8!=contents
+			.col-sm-9!=contents
