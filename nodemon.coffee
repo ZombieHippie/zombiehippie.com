@@ -28,12 +28,13 @@ checkGen = (callback)->
     checkGenVendors callback
 start = ->
   ext = 'jade coffee'
-  watch = ['routes/','views/','app.coffee']
+  watch = ['routes/','app.coffee']
   if '--genvendors' in process.argv
     watch.push 'vendors/'
     ext += ' js css'
   if '--gensrc' in process.argv
-    watch.push 'src/'
+    watch.push 'src/coffee/'
+    watch.push 'src/stylus/'
     ext += ' styl'
   ndm {
     script:'app.coffee'
