@@ -27,6 +27,4 @@ module.exports = class Index
 		@db.Post.find (err, posts) =>
 			return fn(err) if err
 
-			console.log posts
-
 			fn(null, posts)

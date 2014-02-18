@@ -6,5 +6,10 @@ block content
 		p#output the all media collection
 	.container
 		each v, k in tiles
-			.tile.col-lg-3.col-md-4.col-sm-6.col-xs-12(id=k)
-				p= v
+			.tile.col-lg-3.col-md-4.col-sm-6(id=k)
+				a.row(href="/article/"+v.slug)
+					.row
+						strong=v.title
+					.row
+						i="Written by"
+						span=v.user

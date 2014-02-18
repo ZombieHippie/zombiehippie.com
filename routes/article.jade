@@ -7,11 +7,14 @@ block content
 	.container
 		.row.page-header
 			h1=title
-		.row
-			.col-sm-3
-				ol.nav
-					each heading in tableOfContents
-						-var linkTo = "#" + heading.replace(/ /g, '-')
-						li
-							a(href=linkTo)=heading
-			.col-sm-9!=contents
+		if tableOfContents
+			.row
+				.col-sm-3
+					ol.nav
+						each heading in tableOfContents
+							-var linkTo = "#" + heading.replace(/ /g, '-')
+							li
+								a(href=linkTo)=heading
+				.col-sm-9!=contents
+		else
+			.row!=contents
