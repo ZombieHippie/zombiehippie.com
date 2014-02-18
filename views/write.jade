@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	.container
+		style
+			.b{background:#61AAE4}
+			.y{background:#D4DF5D; color:black}
+		h1 Write new post
+		form(role="form",method="POST")
+			.form-group
+				.col-sm-8.col-xs-12
+					textarea.form-control(rows="5",name="content",placeholder="description")
+				.col-sm-4.col-xs-12
+					input.form-control(name="title",type="text",placeholder="title")
+					input.form-control(name="slug",type="text",placeholder="slug")
+					input.form-control(type="Submit",text="Submit")

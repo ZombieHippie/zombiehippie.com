@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	.jumbotron
+		h1#out ZombieHippie
+		p#output the all media collection
+	.container
+		each v, k in tiles
+			.tile.col-lg-3.col-md-4.col-sm-6.col-xs-12(id=k)
+				p= v
