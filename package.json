@@ -13,10 +13,10 @@
     "coffeescript-rehab":"0.3.x",
     "nib":"1.0.x",
     "stylus": "0.42.x",
-    "nodemon": "1.0.x",
     "methodder": "0.0.3"
   },
   "devDependencies": {
+    "nodemon": "1.0.x",
     "devreload": "0.1.2"
   }
 }
