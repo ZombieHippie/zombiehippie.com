@@ -5,8 +5,7 @@ express = require 'express'
 routes = require './routes'
 http = require 'http'
 path = require 'path'
-mongoose = require 'mongoose'
-devreload = require 'devreload'
+jsondb = require "./jsondb.coffee"
 
 app = express()
 
@@ -34,16 +33,14 @@ app.use(express.static(path.join(__dirname, 'static')))
 if app.get('env') is 'development'
 	app.use(express.errorHandler())
 	# Use devreload for automatic reloading
+	devreload = require 'devreload'
 	devreload.listen app, {
 		watch:[__dirname+'/src',__dirname+'/static',__dirname+'/routes'],
 		interval:500, port:9999
 	}
 
-# Setup MongoDB
-mongoose.connect 'mongodb://localhost/app'
-db = {}
-db["User"] = mongoose.model 'User', require('./models/User'), 'users'
-db["Post"] = mongoose.model 'Post', require('./models/Post'), 'posts'
+# *Database*
+db = new jsondb "db.json"
 
 # Routes
 routes = require('./routes')
