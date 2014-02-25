@@ -6,20 +6,9 @@ module.exports = class Write
 	get: (req,res) =>
 		slug = req.params.slug
 		@getArticle slug, (err, post)=>
-			console.log post
-			title = "Richness"
-			author = "Cole Lawrence"
-			contents = "<h2 id='Richness'>Richness</h2><p>Richness in youth and spirit</p><br><h2 id='Which-is'>Which is</h2>"
-			tableOfContents = ["Richness","Which is"]
-			date = new Date()
+			post["user"] = req.session.user
 			if post?
-				res.render 'article.jade', {
-						title: post.title
-						tableOfContents: post.tableOfContents
-						contents: post.content
-						author: post.user
-						date: post.date
-						user: req.session.user}
+				res.render 'article.jade', post
 			else
 				res.redirect '/'
 	getArticle:(slug, fn)->

@@ -8,6 +8,7 @@
   "dependencies": {
     "express": "3.4.x",
     "jade": "1.1.x",
+    "codemirror": "marijnh/CodeMirror.git#v4",
     "coffee-script": ">=1.6.3",
     "coffeescript-rehab":"0.3.x",
     "nib":"1.0.x",

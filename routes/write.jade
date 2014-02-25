@@ -1,13 +1,19 @@
 extends views/layout
 
+block head
+	link(href='/CodeMirror/lib/codemirror.css' rel="stylesheet")
 block content
 	.container
 		h1 Write new post
 		form(role="form",method="POST")
 			.form-group
 				.col-sm-8.col-xs-12
-					textarea.form-control(rows="5",name="content",placeholder="description")
+					textarea.form-control(rows="5",name="description",placeholder="description")
 				.col-sm-4.col-xs-12
 					input.form-control(name="title",type="text",placeholder="title")
 					input.form-control(name="slug",type="text",placeholder="slug")
 					input.form-control(type="Submit",text="Submit")
+				.row
+					textarea.CodeMirror(name="md-content")
+block footer
+	script(src='/CodeMirror/lib/codemirror.js')

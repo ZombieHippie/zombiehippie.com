@@ -1,28 +1,28 @@
 {
     "articles": {
         "324153": {
-            "content": "awdaw",
+            "description": "awdaw",
             "title": "12335qw3",
             "slug": "324153",
             "date": 1393355944672,
             "user": "C"
         },
         "killer-squid": {
-            "content": "Haha lol smiley face.",
+            "description": "Haha lol smiley face.",
             "title": "The Ringers",
             "slug": "killer-squid",
             "date": 1393354645759,
             "user": "C"
         },
         "just-a-test": {
-            "content": "Another test post",
+            "description": "Another test post",
             "title": "This is Just a test",
             "slug": "just-a-test",
             "date": 1393355094688,
             "user": "C"
         },
         "bec-i-can": {
-            "content": "Immaturity",
+            "description": "Immaturity",
             "title": "Because I can",
             "slug": "bec-i-can",
             "date": 1393355326407,
