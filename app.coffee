@@ -5,7 +5,7 @@ express = require 'express'
 routes = require './routes'
 http = require 'http'
 path = require 'path'
-jsondb = require "./jsondb.coffee"
+jsondb = require "./lib/jsondb"
 
 app = express()
 

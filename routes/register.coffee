@@ -1,4 +1,4 @@
-hasher = require('../pass').hash
+hasher = require('../lib/pass').hash
 m = require 'methodder'
 registration_key = "Q;vi74;7mRWQ4''1"
 

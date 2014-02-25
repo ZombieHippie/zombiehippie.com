@@ -1,4 +1,4 @@
-hasher = require('../pass').hash
+hasher = require('../lib/pass').hash
 m = require 'methodder'
 
 module.exports = class Login
