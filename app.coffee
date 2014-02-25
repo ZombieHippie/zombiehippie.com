@@ -10,7 +10,7 @@ jsondb = require "./jsondb.coffee"
 app = express()
 
 # all environments
-app.set('port', process.env.PORT || 3000)
+app.set('port', process.env.PORT || 9090)
 app.set('views', path.join(__dirname, 'routes'))
 app.set('view engine', 'jade')
 app.locals.pretty = true; # Pretty output from jade
@@ -33,11 +33,11 @@ app.use(express.static(path.join(__dirname, 'static')))
 if app.get('env') is 'development'
 	app.use(express.errorHandler())
 	# Use devreload for automatic reloading
-	devreload = require 'devreload'
-	devreload.listen app, {
-		watch:[__dirname+'/src',__dirname+'/static',__dirname+'/routes'],
-		interval:500, port:9999
-	}
+	#devreload = require 'devreload'
+	#devreload.listen app, {
+	#	watch:[__dirname+'/src',__dirname+'/static',__dirname+'/routes'],
+	#	interval:500, port:9999
+	#}
 
 # *Database*
 db = new jsondb "db.json"

@@ -5,7 +5,7 @@ module.exports = class Write
 			res.redirect '/'
 	get: (req,res) =>
 		slug = req.params.slug
-		@getPost slug, (err, post)=>
+		@getArticle slug, (err, post)=>
 			console.log post
 			title = "Richness"
 			author = "Cole Lawrence"
@@ -22,8 +22,5 @@ module.exports = class Write
 						user: req.session.user}
 			else
 				res.redirect '/'
-	getPost:(slug, fn)->
-		@db.Post.findOne {slug}, "date user title content", (err, post) ->
-			return fn(err) if err
-
-			fn(null, post)
+	getArticle:(slug, fn)->
+		@db.getArticle slug, fn

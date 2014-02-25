@@ -5,11 +5,13 @@ block content
 		h1#out ZombieHippie
 		p#output the all media collection
 	.container
-		each v, k in tiles
-			.tile.col-lg-3.col-md-4.col-sm-6(id=k)
+		for v in tiles
+			.tile.col-lg-3.col-md-4.col-sm-6(id=v.slug)
 				a.row(href="/article/"+v.slug)
 					.row
 						strong=v.title
 					.row
-						i="Written by"
+						i="Written by "
 						span=v.user
+					.row
+						span.date=(new Date(parseInt(v.date))).toString().replace(/(^.*?)\s\d+:.*$/,"$1")

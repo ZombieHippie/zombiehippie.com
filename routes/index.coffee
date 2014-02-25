@@ -14,7 +14,7 @@ module.exports = class Index
 		@register = new (require('./register'))(@app, @db)
 		@write = new (require('./write'))(@app, @db)
 	get: (req, res) ->
-		@getPosts (err, tiles)->
+		@getPosts req.query.sort || "date", (err, tiles)->
 			res.render('index_tile_list', {
 				title: 'Inkblur'
 				user: req.session.user
@@ -23,8 +23,5 @@ module.exports = class Index
 	post: (req, res) ->
 		console.log req.body
 
-	getPosts:(fn)->
-		@db.Post.find (err, posts) =>
-			return fn(err) if err
-
-			fn(null, posts)
+	getPosts:(sortBy, fn)->
+		@db.getArticlesBy sortBy, fn

@@ -16,26 +16,10 @@ module.exports = class Write
 			console.log {err} if err
 			if post
 				console.log "Wrote new post:"+post.title
-				res.redirect('/')
+				res.redirect('/article/' + post.slug)
 			else
 				res.redirect '/write?failed'
 	write: (body, user, fn) =>
-		{title, slug, content} = body
-		@db.Post.findOne {slug}, 'slug', (err, post) =>
-			return fn(err) if err
-			# query the db for the slug
-			if post
-				return fn(new Error('post already written to that slug!'))
-			post = new @db.Post {
-				user
-				title
-				slug
-				content
-				date: new Date()
-			}
-			post.save (err)->
-				if not err
-					console.log "SAVE: #{user}'s post: #{title} at: #{slug}"
-					fn(null, post)
-				else
-					fn(err)
+		body["date"] = (new Date()).getTime()
+		body["user"] = user
+		@db.writeArticle body, fn

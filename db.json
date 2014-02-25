@@ -1,0 +1,32 @@
+{
+    "articles": {
+        "killer-squid": {
+            "content": "Haha lol smiley face.",
+            "title": "The Ringers",
+            "slug": "killer-squid",
+            "date": 1393354645759,
+            "user": "C"
+        },
+        "just-a-test": {
+            "content": "Another test post",
+            "title": "This is Just a test",
+            "slug": "just-a-test",
+            "date": 1393355094688,
+            "user": "C"
+        },
+        "bec-i-can": {
+            "content": "Immaturity",
+            "title": "Because I can",
+            "slug": "bec-i-can",
+            "date": 1393355326407,
+            "user": "C"
+        }
+    },
+    "users": {
+        "C": {
+            "name": "C",
+            "salt": "gK3YnTa/CojCJA3hqX9m0mQSOiwAKmXurDAgCWmGbD6OY++XMrlw0+pq4PeLaNpH8o5pJWIgcA0oHkIISCfXTkFh+4NALZH/Hl+J8YRdFWMD4LeQ04U4JFSHWO60+TAJWlMe0jhjqWK9FzzR8SBfJoQfWTwD6hA2SbzN4r1+C7E=",
+            "hash": "oStBuFhVQngrq+GmEdkAjVrCBNGx5OfXlnmZ8rTwIfDcdFKGDhbdpoMZeGO8LEXz9tl/A0BcJNJiYdv7KZWzwdl4Wb8WsnblMeFEb4iHQ/cDco6I7JqxLDKvQJNVgsivUpJieFI9YIQ70Eb/aNBEMQ3eVIhCdwsP9naWMMijcDk="
+        }
+    }
+}

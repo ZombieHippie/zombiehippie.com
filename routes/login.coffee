@@ -1,4 +1,4 @@
-hash = require('../pass').hash
+hasher = require('../pass').hash
 m = require 'methodder'
 
 module.exports = class Login
@@ -25,6 +25,7 @@ module.exports = class Login
 					req.session.user = user
 					res.redirect('/')
 			else
+				console.error( new Error err ) if err
 				res.redirect '/login?failed'
 
 	logout: (req, res)=>
@@ -34,17 +35,14 @@ module.exports = class Login
 			res.redirect('/')
 
 	authenticate: (name, pass, fn)=>
-		@db.User.findOne {name}, 'name salt hash', (err, user) ->
+		@db.getUser name, (err, user) ->
 			return fn(err) if err
-			# query the db for the given username
-			if (!user)
-				return fn(new Error('cannot find user'))
 			# apply the same algorithm to the POSTed password, applying
 			# the hash against the pass / salt, if there is a match we
 			# found the user
-			hash pass, user.salt, (err, hash) ->
+			hasher pass, user.salt, (err, hash) ->
 				if(err)
 					return fn(err)
-				if(hash == user.hash)
+				if(hash is user.hash)
 					return fn(null, user)
-				fn(new Error('invalid password'))
+				fn('invalid password')
