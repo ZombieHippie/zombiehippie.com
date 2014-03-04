@@ -8,9 +8,10 @@
   "dependencies": {
     "express": "3.4.x",
     "jade": "1.1.x",
-    "codemirror": "marijnh/CodeMirror.git#v4",
+    "codemirror": "latest",
     "coffee-script": ">=1.6.3",
     "coffeescript-rehab":"0.3.x",
+    "uglify-js": "~2.4.12",
     "nib":"1.0.x",
     "stylus": "0.42.x"
   },
