@@ -1,4 +1,5 @@
 fs = require 'fs'
+md = new (require('showdown').converter)()
 
 sortedSlugs = (articles, property) ->
 	props = []
@@ -26,12 +27,14 @@ module.exports = class jsondb
 		@db.articles[article.slug] = article
 		do @sortArticles
 		do @writeDB
+		fs.writeFileSync("articles/" + article.slug + ".md", article["md-content"])
 		fn null, article
 	sortArticles: ->
 		@slugsByDate = sortedSlugs @db.articles, "date"
 		@slugsByTitle = sortedSlugs @db.articles, "title"
 	getArticle: (slug, fn)->
 		if article = @db.articles[slug]
+			article.md = md.makeHtml String(fs.readFileSync("articles/" + article.slug + ".md"))
 			fn null, article
 		else
 			fn "Article with slug:#{slug} does not exist!"

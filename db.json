@@ -1,39 +1,19 @@
 {
     "articles": {
-        "324153": {
-            "description": "awdaw",
-            "title": "12335qw3",
-            "slug": "324153",
-            "date": 1393355944672,
-            "user": "C"
-        },
-        "killer-squid": {
-            "description": "Haha lol smiley face.",
-            "title": "The Ringers",
-            "slug": "killer-squid",
-            "date": 1393354645759,
-            "user": "C"
-        },
-        "just-a-test": {
-            "description": "Another test post",
-            "title": "This is Just a test",
-            "slug": "just-a-test",
-            "date": 1393355094688,
-            "user": "C"
-        },
-        "bec-i-can": {
-            "description": "Immaturity",
-            "title": "Because I can",
-            "slug": "bec-i-can",
-            "date": 1393355326407,
+        "lol-lol": {
+            "description": "Get bent",
+            "title": "Lol",
+            "slug": "lol-lol",
+            "md-content": "# Regexing it up\r\n\r\n**Todo**:\r\n* greet you\r\n> Hello\r\n* show you around\r\n> Check out [my regexes](/article/regexes)\r\n\r\n```javascript\r\n/[^\\\\\\/\\.]+$/\r\n```",
+            "date": 1393963515866,
             "user": "C"
         }
     },
     "users": {
         "C": {
             "name": "C",
-            "salt": "gK3YnTa/CojCJA3hqX9m0mQSOiwAKmXurDAgCWmGbD6OY++XMrlw0+pq4PeLaNpH8o5pJWIgcA0oHkIISCfXTkFh+4NALZH/Hl+J8YRdFWMD4LeQ04U4JFSHWO60+TAJWlMe0jhjqWK9FzzR8SBfJoQfWTwD6hA2SbzN4r1+C7E=",
-            "hash": "oStBuFhVQngrq+GmEdkAjVrCBNGx5OfXlnmZ8rTwIfDcdFKGDhbdpoMZeGO8LEXz9tl/A0BcJNJiYdv7KZWzwdl4Wb8WsnblMeFEb4iHQ/cDco6I7JqxLDKvQJNVgsivUpJieFI9YIQ70Eb/aNBEMQ3eVIhCdwsP9naWMMijcDk="
+            "salt": "G5h2ZcZXR+veTHE8gs7XQO+zcIAc+HeTFBIF8kIC/rraErZLHbJHYBINzJj7jlIzWtv7FkAaljLptwQdOatWgIIHdkZqiOnTtsxbT8nycupSPdy5yXm1yZmSUBuShAy6gVF3FhLiUmoDbqvAzLCOe32g+xB7lWDI1Riznei9NTs=",
+            "hash": "7Qw0Q8HY+jGA8p/Qfc2MxSa2utcy13or+0XNjJNxooh/JQ20CTcSQDEUR1PB7Y3gAj8XimccXSED9ZcBafmKxlTy4N0pP14SHb2/o6Eo9QbNJyfIQhuavkBc9Ekz+FfHXezapW9GC/sY9Ame/1KvFuz8nmCZyTyhL8Dy+598RaI="
         }
     }
 }

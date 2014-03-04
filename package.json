@@ -9,6 +9,7 @@
     "express": "3.4.x",
     "jade": "1.1.x",
     "codemirror": "latest",
+    "showdown":"latest",
     "coffee-script": ">=1.6.3",
     "coffeescript-rehab":"0.3.x",
     "uglify-js": "~2.4.12",

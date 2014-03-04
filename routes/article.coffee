@@ -6,7 +6,6 @@ module.exports = class Write
 	get: (req,res) =>
 		slug = req.params.slug
 		@getArticle slug, (err, post)=>
-			post["user"] = req.session.user
 			if post?
 				res.render 'article.jade', post
 			else
