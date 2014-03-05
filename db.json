@@ -1,12 +1,21 @@
 {
     "articles": {
-        "lol-lol": {
-            "description": "Get bent",
-            "title": "Lol",
-            "slug": "lol-lol",
-            "md-content": "# Regexing it up\r\n\r\n**Todo**:\r\n* greet you\r\n> Hello\r\n* show you around\r\n> Check out [my regexes](/article/regexes)\r\n\r\n```javascript\r\n/[^\\\\\\/\\.]+$/\r\n```",
-            "date": 1393963515866,
-            "user": "C"
+        "howdy": {
+            "description": "Welcome",
+            "title": "Hello",
+            "slug": "howdy",
+            "date": 1394047788167,
+            "author": "C",
+            "md": "<h1 id=\"suck\">Suck</h1>"
+        },
+        "name-regexes": {
+            "description": "Regexes for matching people's names.",
+            "title": "Name Regexes",
+            "slug": "name-regexes",
+            "article_script": "$(\"ol\").attr(\"start\",0)",
+            "article_styles": "",
+            "date": 1394051292367,
+            "author": "C"
         }
     },
     "users": {

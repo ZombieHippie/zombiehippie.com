@@ -14,6 +14,7 @@
     "coffeescript-rehab":"0.3.x",
     "uglify-js": "~2.4.12",
     "nib":"1.0.x",
+    "send":"0.2.x",
     "stylus": "0.42.x"
   },
   "devDependencies": {

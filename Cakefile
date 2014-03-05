@@ -34,7 +34,7 @@ buildVendors = ->
 			"addon/selection/active-line.js", "addon/selection/mark-selection.js",
 			"mode/markdown/markdown.js"
 		])[...]
-
+	jsFiles.push p.resolve('node_modules/showdown/',"compressed/showdown.js")
 
 	for filepath in cssFiles when filepath.match /\.css$/i
 		cssStr += fs.readFileSync(filepath)+'\n'
