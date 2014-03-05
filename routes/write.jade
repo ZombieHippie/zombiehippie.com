@@ -5,9 +5,40 @@ block content
 		h1 Write new post
 		form(role="form",method="POST")
 			.form-group
-				.col-sm-8.col-xs-12
-					textarea.form-control(rows="5",name="content",placeholder="description")
-				.col-sm-4.col-xs-12
-					input.form-control(name="title",type="text",placeholder="title")
-					input.form-control(name="slug",type="text",placeholder="slug")
-					input.form-control(type="Submit",text="Submit")
+				.row
+					.col-sm-8.col-xs-12
+						textarea.form-control(rows="5",name="description",placeholder="description")=article.description
+					.col-sm-4.col-xs-12
+						input.form-control(name="title",type="text",placeholder="title",value=article.title)
+						input.form-control(name="slug",type="text",placeholder="slug",value=article.slug)
+						input(name="editing",type="hidden",value=article.slug)
+						input.form-control(type="Submit",text="Submit")
+				.row.uniquecode
+					.col-md-6.col-xs-12
+						label Script
+						textarea.form-control.CodeMirror(name="article_script")=article.article_script
+					.col-md-6.col-xs-12
+						label Styles
+						textarea.form-control.CodeMirror(name="article_styles")=article.article_styles
+				.row
+					textarea.CodeMirror(name="md-content")=article.md
+		#preview-md.row
+block footer
+	script.
+		window.editor = CodeMirror.fromTextArea($(".CodeMirror[name=md-content]")[0], {
+				styleSelectedText: true,
+				showCursorWhenSelecting: true,
+				styleActiveLine: true,
+				theme: "xq-light",
+				indentWithTabs: true,
+				indentUnit: 4,
+				lineWrapping: true,
+				lineNumbers: true,
+				// keyMap: "sublime",
+				mode: "markdown"
+			});
+		var converter = new Showdown.converter();
+		editor.on("change", function() {
+			html = converter.makeHtml(editor.getValue());
+			$('#preview-md').html(html);
+		});

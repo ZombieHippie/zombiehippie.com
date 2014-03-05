@@ -1,26 +1,25 @@
+send = require 'send'
+url = require 'url'
 module.exports = class Write
 	constructor: (@app, @db)->
 		@app.get '/article/:slug', @get
+		@app.get '/article/:slug/*', @getFile
 		@app.get '/article/', (req, res)->
 			res.redirect '/'
 	get: (req,res) =>
 		slug = req.params.slug
-		@getArticle slug, (err, post)=>
-			console.log post
-			title = "Richness"
-			author = "Cole Lawrence"
-			contents = "<h2 id='Richness'>Richness</h2><p>Richness in youth and spirit</p><br><h2 id='Which-is'>Which is</h2>"
-			tableOfContents = ["Richness","Which is"]
-			date = new Date()
+		@db.getArticle slug, (err, post) =>
 			if post?
-				res.render 'article.jade', {
-						title: post.title
-						tableOfContents: post.tableOfContents
-						contents: post.content
-						author: post.user
-						date: post.date
-						user: req.session.user}
+				res.render 'article.jade', post
 			else
 				res.redirect '/'
-	getArticle:(slug, fn)->
-		@db.getArticle slug, fn
+	getFile: (req, res) =>
+		fileLoc = req.path.replace(/^article\//, '').match /([^\/]+)(.+)$/
+		console.log fileLoc[0]
+		redir = ->
+				res.redirect '/article/' + fileLoc[1]
+		send(req, fileLoc[0])
+			.root('./data/files')
+			.on('error', redir)
+			.on('directory', redir)
+			.pipe(res)

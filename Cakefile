@@ -4,6 +4,7 @@ coffee = require 'coffee-script'
 stylus = require 'stylus'
 R = require 'coffeescript-rehab'
 nib = require 'nib'
+uglify = require 'uglify-js'
 
 try fs.mkdirSync dir = __dirname+'/static'
 try fs.mkdirSync dir + '/css'
@@ -16,13 +17,24 @@ buildVendors = ->
 	jsStr = ""
 	writeVendorsFiles = ->
 		fs.writeFileSync outputdir+"css/vendors.css", cssStr
+		jsStr = uglify.minify(jsStr, { fromString: true }).code;
 		fs.writeFileSync outputdir+"js/vendors.js", jsStr
 
 	cssFiles = fs.readdirSync directory+'css/'
 	cssFiles = (p.resolve(directory+'css/',fl) for fl in cssFiles)[...]
+		.concat (p.resolve('node_modules/codemirror/',fl) for fl in [
+			"lib/codemirror.css", "theme/xq-light.css"
+		])[...]
 
 	jsFiles = fs.readdirSync directory+'js/'
 	jsFiles = (p.resolve(directory+'js/',fl) for fl in jsFiles)[...] 
+		.concat (p.resolve('node_modules/codemirror/',fl) for fl in [
+			"lib/codemirror.js",
+			"addon/edit/continuelist.js", "addon/fold/markdown-fold.js",
+			"addon/selection/active-line.js", "addon/selection/mark-selection.js",
+			"mode/markdown/markdown.js"
+		])[...]
+	jsFiles.push p.resolve('node_modules/showdown/',"compressed/showdown.js")
 
 	for filepath in cssFiles when filepath.match /\.css$/i
 		cssStr += fs.readFileSync(filepath)+'\n'

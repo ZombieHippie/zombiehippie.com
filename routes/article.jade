@@ -5,8 +5,13 @@ block content
 		h1#out ZombieHippie
 		p#output the all media collection
 	.container
+		if article_styles
+			style#article-styles(rel="stylesheet")!=article_styles
 		.row.page-header
 			h1=title
+			.row
+				span="Written by "
+				em=author
 		if tableOfContents
 			.row
 				.col-sm-3
@@ -15,6 +20,9 @@ block content
 							-var linkTo = "#" + heading.replace(/ /g, '-')
 							li
 								a(href=linkTo)=heading
-				.col-sm-9!=contents
+				.col-sm-9!=md
 		else
-			.row!=contents
+			.row!=md
+block footer
+	if article_script
+		script#article-script!="(function(){" + article_script + "}());"

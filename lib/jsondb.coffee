@@ -1,4 +1,13 @@
 fs = require 'fs'
+md = new (require('showdown').converter)()
+repath = (path) ->
+	path.replace(/[\\\/]+/g, '/')
+
+ensureDataFolders = ->
+	for dir in ["data", "data/articles", "data/files"]
+		if not fs.existsSync dir
+			fs.mkdirSnc dir
+
 
 sortedSlugs = (articles, property) ->
 	props = []
@@ -14,6 +23,7 @@ sortedSlugs = (articles, property) ->
 
 module.exports = class jsondb
 	constructor:(@dbpath)->
+		ensureDataFolders()
 		alreadyMade = fs.existsSync @dbpath
 		if not alreadyMade
 			@db = {articles:{},users:{}}
@@ -22,16 +32,35 @@ module.exports = class jsondb
 			@db = JSON.parse(fs.readFileSync @dbpath)
 		do @sortArticles
 		console.log @slugsByDate
-	writeArticle:(article, fn) =>
+	writeArticle:(article, overwrite, fn) =>
+		if not overwrite
+			if @db.articles[article.slug]?
+				article.slug += "_"
+				return writeArticle article, overwrite, fn
+		mdContent = article["md-content"]
+		delete article["md-content"]
 		@db.articles[article.slug] = article
+		if overwrite and article.slug isnt overwrite
+			delete @db.articles[overwrite]
+			fs.unlinkSync repath("data/articles/" + overwrite+ ".md")
 		do @sortArticles
 		do @writeDB
+		fs.writeFileSync(repath("data/articles/" + article.slug + ".md"), mdContent)
 		fn null, article
+	uploadFile: (slug, filename, data)->
+		fs.writeFileSync(repath("data/files/" + slug + "/" + filename), data)
 	sortArticles: ->
 		@slugsByDate = sortedSlugs @db.articles, "date"
 		@slugsByTitle = sortedSlugs @db.articles, "title"
-	getArticle: (slug, fn)->
+	getArticle: (slug, skipMD, fn)->
+		if not fn?
+			fn = skipMD
+			skipMD = false
 		if article = @db.articles[slug]
+			console.log article
+			article.md = String(fs.readFileSync("data/articles/" + article.slug + ".md"))
+			if not skipMD
+				article.md = md.makeHtml article.md
 			fn null, article
 		else
 			fn "Article with slug:#{slug} does not exist!"
@@ -52,7 +81,6 @@ module.exports = class jsondb
 			slugs = slugs[...count]
 		for slug in slugs
 			articles.push @db.articles[slug]
-		console.log articles
 		fn null, articles
 	getUser: (name, fn) =>
 		user = @db.users[name]
