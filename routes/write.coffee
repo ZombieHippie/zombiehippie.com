@@ -1,9 +1,7 @@
-m = require 'methodder'
-
 module.exports = class Write
 	constructor: (@app, @db)->
-		@app.get '/write/:slug?', m @get, @
-		@app.post '/write/:slug?', m @post, @
+		@app.get '/write/:slug?', @get
+		@app.post '/write/:slug?', @post
 	get: (req,res) =>
 		return res.redirect('/login') if not req.session.user
 		article = null

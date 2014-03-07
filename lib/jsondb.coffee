@@ -6,7 +6,7 @@ repath = (path) ->
 ensureDataFolders = ->
 	for dir in ["data", "data/articles", "data/files"]
 		if not fs.existsSync dir
-			fs.mkdirSnc dir
+			fs.mkdirSync dir
 
 
 sortedSlugs = (articles, property) ->

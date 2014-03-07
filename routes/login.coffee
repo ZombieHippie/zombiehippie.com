@@ -1,11 +1,10 @@
 hasher = require('../lib/pass').hash
-m = require 'methodder'
 
 module.exports = class Login
 	constructor:(@app, @db)->
-		@app.get '/login', m @get, @
-		@app.post '/login', m @post, @
-		@app.all '/logout', m @logout, @
+		@app.get '/login', @get
+		@app.post '/login', @post
+		@app.all '/logout', @logout
 	get: (req, res)=>
 		res.render 'login.jade', {
 				title: 'Login to Inkblur'

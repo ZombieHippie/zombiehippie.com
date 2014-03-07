@@ -1,11 +1,10 @@
 hasher = require('../lib/pass').hash
-m = require 'methodder'
 registration_key = "Q;vi74;7mRWQ4''1"
 
 module.exports = class Register
 	constructor: (@app, @db)->
-		@app.get '/register', m @get, @
-		@app.post '/register', m @post, @
+		@app.get '/register', @get
+		@app.post '/register', @post
 	get: (req,res) =>
 		res.render 'login.jade', {
 				title: 'Register to Inkblur'
