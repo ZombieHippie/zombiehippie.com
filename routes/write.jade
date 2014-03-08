@@ -1,5 +1,7 @@
 extends views/layout
 
+block head
+	style#preview-style
 block content
 	.container
 		h1 Write new post
@@ -16,10 +18,10 @@ block content
 				.row.uniquecode
 					.col-md-6.col-xs-12
 						label Script
-						textarea.form-control.CodeMirror(name="article_script")=article.article_script
+						textarea.form-control(name="article_script")=article.article_script
 					.col-md-6.col-xs-12
 						label Styles
-						textarea.form-control.CodeMirror(name="article_styles")=article.article_styles
+						textarea.form-control(name="article_styles")=article.article_styles
 				.row
 					textarea.CodeMirror(name="md-content")=article.md
 		#preview-md.row
@@ -41,4 +43,7 @@ block footer
 		editor.on("change", function() {
 			html = converter.makeHtml(editor.getValue());
 			$('#preview-md').html(html);
+		});
+		$("textarea[name=article_styles]").on("input", function() {
+			$("#preview-style").html(this.value);
 		});
