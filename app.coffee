@@ -47,5 +47,8 @@ db = new jsondb "db.json"
 routes = require('./routes')
 new routes app, db
 
+# Upload files
+app.post "/upload", require("./lib/uploader-simpler").handler
+
 http.createServer(app).listen app.get('port'), ->
 	console.log 'Express server listening on port ' + app.get 'port'

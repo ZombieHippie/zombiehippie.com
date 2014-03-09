@@ -2,20 +2,32 @@ extends views/layout
 
 block head
 	style.
-		.toggle-editor {
-			padding: .5em;
-			background: #111;
+		.extras>div:hover {
+			cursor: pointer;
+			text-decoration: underline;
+		}
+		.extras>div {
 			color: white;
+			border-bottom: 1px solid #222;
+		}
+		.extras {
 			position: absolute;
 			top: 0;
 			right: 0;
+			padding: .5em;
 			border-radius: .5em;
+			background: #111;
 		}
+		#upload { display:none }
 		.hidden-editor {
 			max-height: 0;
 		}
 	style#preview-style
 block content
+	.extras
+		.toggle-editor Hide editor
+		.upload-file Upload file
+		input#upload(type="file")
 	.container
 		h1 Write new post
 		form(role="form",method="POST")
@@ -37,7 +49,6 @@ block content
 						textarea.form-control(name="article_styles")=article.article_styles
 				.row.markdown-editor
 					textarea(name="md-content")=article.md
-				.toggle-editor Hide editor
 		#preview-md.row
 block footer
 	script.
@@ -54,15 +65,30 @@ block footer
 				mode: "markdown"
 			});
 		var converter = new Showdown.converter(),
+			slug = $("[name=slug]")[0].value,
 			makePreview = function() {
-			var html = converter.makeHtml(editor.getValue());
-			$('#preview-md').html(html);
-			$("#preview-style").html($("textarea[name=article_styles]").val());
-		};
+				var html = converter.makeHtml(editor.getValue());
+				$('#preview-md').html(html);
+				$("#preview-style").html($("textarea[name=article_styles]").val());
+			};
 		editor.on("change", makePreview);
 		$("textarea[name=article_styles]").on("input", makePreview);
 		$(".toggle-editor").on("click", function() {
 			$(".markdown-editor .CodeMirror").toggleClass("hidden-editor");
 			$(".unique-code").toggleClass("hidden-editor");
+		});
+		$(".upload-file").on("click", function() {
+			$("#upload").click();
+		})
+		$("#upload").on("change", function(event) {
+			var fd = new FormData(),
+				file = this.files[0],
+				xhr = new XMLHttpRequest();
+			fd.append("file", file);
+			xhr.open("POST", "/upload?" + $.param({
+				slug : slug,
+				filename : file.name
+			}));
+			xhr.send(fd);
 		});
 		makePreview();

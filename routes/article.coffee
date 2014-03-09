@@ -14,11 +14,11 @@ module.exports = class Write
 			else
 				res.redirect '/'
 	getFile: (req, res) =>
-		fileLoc = req.path.replace(/^article\//, '').match /([^\/]+)(.+)$/
-		console.log fileLoc[0]
+		fileLoc = req.path.replace(/^article\/(([^\/]+)(.+))$/
+		console.log fileLoc[1]
 		redir = ->
-				res.redirect '/article/' + fileLoc[1]
-		send(req, fileLoc[0])
+				res.redirect '/article/' + fileLoc[2]
+		send(req, fileLoc[1])
 			.root('./data/files')
 			.on('error', redir)
 			.on('directory', redir)
