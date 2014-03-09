@@ -1,6 +1,19 @@
 extends views/layout
 
 block head
+	style.
+		.toggle-editor {
+			padding: .5em;
+			background: #111;
+			color: white;
+			position: absolute;
+			top: 0;
+			right: 0;
+			border-radius: .5em;
+		}
+		.hidden-editor {
+			max-height: 0;
+		}
 	style#preview-style
 block content
 	.container
@@ -15,19 +28,20 @@ block content
 						input.form-control(name="slug",type="text",placeholder="slug",value=article.slug)
 						input(name="editing",type="hidden",value=article.slug)
 						input.form-control(type="Submit",text="Submit")
-				.row.uniquecode
+				.row.unique-code
 					.col-md-6.col-xs-12
 						label Script
 						textarea.form-control(name="article_script")=article.article_script
 					.col-md-6.col-xs-12
 						label Styles
 						textarea.form-control(name="article_styles")=article.article_styles
-				.row
-					textarea.CodeMirror(name="md-content")=article.md
+				.row.markdown-editor
+					textarea(name="md-content")=article.md
+				.toggle-editor Hide editor
 		#preview-md.row
 block footer
 	script.
-		window.editor = CodeMirror.fromTextArea($(".CodeMirror[name=md-content]")[0], {
+		window.editor = CodeMirror.fromTextArea($("textarea[name=md-content]")[0], {
 				styleSelectedText: true,
 				showCursorWhenSelecting: true,
 				styleActiveLine: true,
@@ -39,11 +53,16 @@ block footer
 				// keyMap: "sublime",
 				mode: "markdown"
 			});
-		var converter = new Showdown.converter();
-		editor.on("change", function() {
-			html = converter.makeHtml(editor.getValue());
+		var converter = new Showdown.converter(),
+			makePreview = function() {
+			var html = converter.makeHtml(editor.getValue());
 			$('#preview-md').html(html);
+			$("#preview-style").html($("textarea[name=article_styles]").val());
+		};
+		editor.on("change", makePreview);
+		$("textarea[name=article_styles]").on("input", makePreview);
+		$(".toggle-editor").on("click", function() {
+			$(".markdown-editor .CodeMirror").toggleClass("hidden-editor");
+			$(".unique-code").toggleClass("hidden-editor");
 		});
-		$("textarea[name=article_styles]").on("input", function() {
-			$("#preview-style").html(this.value);
-		});
+		makePreview();
