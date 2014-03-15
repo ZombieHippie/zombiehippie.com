@@ -2,7 +2,7 @@ module.exports = class Index
 	constructor:(@app, @db)->
 		# navigation bar
 		@app.locals {
-			nav:{Home:"/"},
+			nav:{Home:"/", Login:"/login"},
 			site_name:"Media by Cole Lawrence (ZombieHippie)",
 			author:"Cole Lawrence"
 		}

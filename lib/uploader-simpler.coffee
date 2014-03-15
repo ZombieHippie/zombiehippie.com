@@ -17,6 +17,7 @@ exports.handler = (req, res)->
 	req.on "close", ->
 		console.log("Upload finished #{slug}/#{filename}")
 		closeConnection()
-	writer = fs.createWriteStream("./data/files/#{slug}/#{filename}")
-	try fs.mkdirSync "./data/files/#{slug}"
-	req.pipe(writer)
+	fs.readFile req.files.file.path, (err, data) ->
+		try fs.mkdirSync "./data/files/#{slug}"
+		fs.writeFile "./data/files/#{slug}/#{filename}", data, (err) ->
+			closeConnection()

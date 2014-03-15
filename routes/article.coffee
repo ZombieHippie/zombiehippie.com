@@ -1,9 +1,10 @@
 send = require 'send'
 url = require 'url'
+express = require 'express'
 module.exports = class Write
 	constructor: (@app, @db)->
 		@app.get '/article/:slug', @get
-		@app.get '/article/:slug/*', @getFile
+		@app.use '/article/:slug/:file', @getFile
 		@app.get '/article/', (req, res)->
 			res.redirect '/'
 	get: (req,res) =>
@@ -14,8 +15,8 @@ module.exports = class Write
 			else
 				res.redirect '/'
 	getFile: (req, res) =>
-		fileLoc = req.path.replace(/^article\/(([^\/]+)(.+))$/
-		console.log fileLoc[1]
+		fileLoc = req.path.replace /^article\/(([^\/]+)\/(.+))$/
+		console.log req.params
 		redir = ->
 				res.redirect '/article/' + fileLoc[2]
 		send(req, fileLoc[1])
