@@ -27,7 +27,7 @@ app.use(express.session())
 
 app.use(app.router)
 app.use(express.static(path.join(__dirname, 'static')))
-
+app.use(express.static(path.join(__dirname, 'data')))
 
 # development only
 if app.get('env') is 'development'

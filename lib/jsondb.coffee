@@ -1,13 +1,27 @@
 fs = require 'fs'
-md = new (require('showdown').converter)()
+md = require 'showdown'
+md = new md.converter()#({extensions:[require './showdown-extensions.js']})
+
 repath = (path) ->
 	path.replace(/[\\\/]+/g, '/')
-
+repathFileURL = (path) ->
+  path.replace(/article/i, "file")
 ensureDataFolders = ->
 	for dir in ["data", "data/articles", "data/files"]
 		if not fs.existsSync dir
 			fs.mkdirSync dir
-
+premarker = (article) ->
+  article.md = article.md.replace ///
+      ! \[ ([\s\S]+?) \]
+        \( ([\S]+?) \s? ("[^"]*")? \)
+    ///, ->
+      match = arguments
+      src = "/files/#{article.slug}/#{match[2]}"
+      """
+        <p align="center">
+          <img alt="#{match[1]}" src="#{src}" title=#{match[3]}></img>
+        </p>
+      """
 
 sortedSlugs = (articles, property) ->
 	props = []
@@ -60,6 +74,7 @@ module.exports = class jsondb
 			console.log article
 			article.md = String(fs.readFileSync("data/articles/" + article.slug + ".md"))
 			if not skipMD
+        premarker article
 				article.md = md.makeHtml article.md
 			fn null, article
 		else

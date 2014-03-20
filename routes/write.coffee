@@ -3,7 +3,7 @@ module.exports = class Write
 		@app.get '/write/:slug?', @get
 		@app.post '/write/:slug?', @post
 	get: (req,res) =>
-		#return res.redirect('/login') if not req.session.user
+		return res.redirect('/login') if not req.session.user
 		article = null
 		render = (article = {title:"",description:"",slug:"",md:"", article_script:"", article_styles:""}) ->
 			res.render 'write.jade', {
