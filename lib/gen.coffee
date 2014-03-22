@@ -43,13 +43,13 @@ exports.buildVendors = ->
   writeVendorsFiles()
 
 exports.buildSrc = ->
-  buildSrcCoffee()
-  buildSrcStylus()
+  exports.buildSrcCoffee()
+  exports.buildSrcStylus()
 exports.gen = ->
   exports.buildSrc()
   exports.buildVendors()
   console.log "Generated src and vendors"
-buildSrcCoffee = ->
+exports.buildSrcCoffee = ->
   directory = __dirname+"/../src/"
   outputdir = __dirname+"/../static/"
   jsfiles = {}
@@ -64,7 +64,7 @@ buildSrcCoffee = ->
     r = new R(p.resolve coffeeDir, fl)
     jsfiles[fl.replace(/coffee$/, 'js')] = r.compile()
   writeFiles()
-buildSrcStylus = ->
+exports.buildSrcStylus = ->
   directory = __dirname+"/../src/"
   outputdir = __dirname+"/../static/"
   cssfiles = {}
