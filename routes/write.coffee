@@ -5,11 +5,12 @@ module.exports = class Write
 	get: (req,res) =>
 		return res.redirect('/login') if not req.session.user
 		article = null
-		render = (article = {title:"",description:"",slug:"",md:"", article_script:"", article_styles:""}) ->
+		render = (article = {title:"",description:"",slug:"",md:"", article_script:"", article_styles:""}) =>
 			res.render 'write.jade', {
 					title: 'Write on Inkblur'
 					user: req.session.user
 					article
+					articleFiles: @db.getFilenames(article.slug) 
 					isNew: true}
 			
 		if req.params.slug?

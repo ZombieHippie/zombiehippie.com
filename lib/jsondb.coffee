@@ -5,24 +5,22 @@ md = new md.converter()#({extensions:[require './showdown-extensions.js']})
 repath = (path) ->
 	path.replace(/[\\\/]+/g, '/')
 repathFileURL = (path) ->
-  path.replace(/article/i, "file")
+	path.replace(/article/i, "file")
 ensureDataFolders = ->
 	for dir in ["data", "data/articles", "data/files"]
 		if not fs.existsSync dir
 			fs.mkdirSync dir
 premarker = (article) ->
-  article.md = article.md.replace ///
-      ! \[ ([\s\S]+?) \]
-        \( ([\S]+?) \s? ("[^"]*")? \)
-    ///, ->
-      match = arguments
-      src = "/files/#{article.slug}/#{match[2]}"
-      """
-        <p align="center">
-          <img alt="#{match[1]}" src="#{src}" title=#{match[3]}></img>
-        </p>
-      """
-
+	article.md = article.md.replace ///
+			! \[ ([\s\S]+?) \]
+				\( ([\S]+?) \s? ("[^"]*")? \)
+		///, (match, alt, src, title) ->
+			src = "/files/#{article.slug}/#{src}"
+			"""
+				<p>
+					<img alt="#{match[1]}" src="#{src}" title=#{title}></img>
+				</p>
+			"""
 sortedSlugs = (articles, property) ->
 	props = []
 	propToSlug = {}
@@ -56,11 +54,16 @@ module.exports = class jsondb
 		@db.articles[article.slug] = article
 		if overwrite and article.slug isnt overwrite
 			delete @db.articles[overwrite]
-			fs.unlinkSync repath("data/articles/" + overwrite+ ".md")
+			fs.unlinkSync repath("data/articles/" + overwrite + ".md")
 		do @sortArticles
 		do @writeDB
 		fs.writeFileSync(repath("data/articles/" + article.slug + ".md"), mdContent)
 		fn null, article
+	getFilenames: (slug) ->
+		if slug is ""
+			return []
+		else
+			return fs.readdirSync(repath("data/files/" + slug))
 	uploadFile: (slug, filename, data)->
 		fs.writeFileSync(repath("data/files/" + slug + "/" + filename), data)
 	sortArticles: ->
@@ -74,7 +77,7 @@ module.exports = class jsondb
 			console.log article
 			article.md = String(fs.readFileSync("data/articles/" + article.slug + ".md"))
 			if not skipMD
-        premarker article
+				premarker article
 				article.md = md.makeHtml article.md
 			fn null, article
 		else

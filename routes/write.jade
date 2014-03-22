@@ -27,6 +27,9 @@ block content
 	.extras
 		.toggle-editor Hide editor
 		.upload-file Upload file
+		ul.file-list
+			each filename in articleFiles
+				li=filename
 		input#upload(type="file")
 	.container
 		h1 Write new post
@@ -64,13 +67,18 @@ block footer
 				// keyMap: "sublime",
 				mode: "markdown"
 			});
+		
 		var converter = new Showdown.converter(),
 			slug = $("[name=slug]")[0].value,
+			fileList = [],
 			makePreview = function() {
 				var html = converter.makeHtml(editor.getValue());
 				$('#preview-md').html(html);
 				$("#preview-style").html($("textarea[name=article_styles]").val());
 			};
+		$(".file-list").each(function (elem){
+			fileList.push(elem.innerHTML);
+		});
 		editor.on("change", makePreview);
 		$("textarea[name=article_styles]").on("input", makePreview);
 		$(".toggle-editor").on("click", function() {
@@ -90,5 +98,7 @@ block footer
 				filename : file.name
 			}));
 			xhr.send(fd);
+			fileList.push(file.name);
+			$(".file-list").append("<li>" + file.name + "</li>");
 		});
 		makePreview();
