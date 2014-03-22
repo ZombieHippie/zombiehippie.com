@@ -1,5 +1,5 @@
 hasher = require('../lib/pass').hash
-registration_key = "Q;vi74;7mRWQ4''1"
+registration_key = "Q;vi$4;7mR^Q4''1"
 
 module.exports = class Register
 	constructor: (@app, @db)->
