@@ -12,13 +12,13 @@ ensureDataFolders = ->
 			fs.mkdirSync dir
 premarker = (article) ->
 	article.md = article.md.replace ///
-			! \[ ([\s\S]*) \]
+			! \[ ([\s\S]*?) \]
 				\( ([\S]+?) \s? ("[^"]*")? \)
 		///, (match, alt, src, title) ->
 			src = "/files/#{article.slug}/#{src}"
 			"""
 				<p>
-					<img alt="#{match[1]}" src="#{src}" title=#{title}></img>
+					<img alt="#{alt}" src="#{src}" title=#{title}></img>
 				</p>
 			"""
 sortedSlugs = (articles, property) ->

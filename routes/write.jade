@@ -98,11 +98,20 @@ block footer
 				}
 			});
 		
-		var converter = new Showdown.converter(),
+		var premarker = function (val) {
+				return val.replace(/!\[([\s\S]*?)\]\(([\S]+?)\s?("[^"]*")?\)/
+					, function (match, alt, src, title) {
+						src = "/files/#{article.slug}/" + src
+						return 	"<p>\n" +
+									"<img alt=\"" + alt + "\" src=\"" + src + "\" title=" + title + "></img>\n" +
+								"</p>\n"
+					});
+			},
+			converter = new Showdown.converter(),
 			slug = $("[name=slug]")[0].value,
 			fileList = [],
 			makePreview = function() {
-				var html = converter.makeHtml(editor.getValue());
+				var html = converter.makeHtml(premarker(editor.getValue()));
 				$('#preview-md').html(html);
 				$("#preview-style").html($("textarea[name=article_styles]").val());
 			};
