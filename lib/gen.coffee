@@ -10,20 +10,21 @@ try fs.mkdirSync dir = __dirname+'/../static'
 try fs.mkdirSync dir + '/css'
 try fs.mkdirSync dir + '/js'
 
-exports.buildVendors = ->
+exports.buildVendors = (min) ->
   directory = __dirname+"/../vendor/"
   outputdir = __dirname+"/../static/"
   cssStr = ""
   jsStr = ""
   writeVendorsFiles = ->
     fs.writeFileSync outputdir+"css/vendors.css", cssStr
-    jsStr = uglify.minify(jsStr, { fromString: true }).code;
+    if min
+      jsStr = uglify.minify(jsStr, { fromString: true }).code
     fs.writeFileSync outputdir+"js/vendors.js", jsStr
 
   cssFiles = fs.readdirSync directory+'css/'
   cssFiles = (p.resolve(directory+'css/',fl) for fl in cssFiles)[...]
     .concat (p.resolve('node_modules/codemirror/',fl) for fl in [
-      "lib/codemirror.css", "theme/xq-light.css"
+      "lib/codemirror.css", "theme/xq-light.css", "addon/hint/show-hint.css"
     ])[...]
 
   jsFiles = fs.readdirSync directory+'js/'
@@ -32,6 +33,7 @@ exports.buildVendors = ->
       "lib/codemirror.js",
       "addon/edit/continuelist.js", "addon/fold/markdown-fold.js",
       "addon/selection/active-line.js", "addon/selection/mark-selection.js",
+      "addon/hint/show-hint.js",
       "mode/markdown/markdown.js"
     ])[...]
   jsFiles.push p.resolve('node_modules/showdown/',"compressed/showdown.js")
@@ -45,9 +47,9 @@ exports.buildVendors = ->
 exports.buildSrc = ->
   exports.buildSrcCoffee()
   exports.buildSrcStylus()
-exports.gen = ->
+exports.gen = (min = true) ->
   exports.buildSrc()
-  exports.buildVendors()
+  exports.buildVendors(min)
   console.log "Generated src and vendors"
 exports.buildSrcCoffee = ->
   directory = __dirname+"/../src/"

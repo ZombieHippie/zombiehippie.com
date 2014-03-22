@@ -12,7 +12,7 @@ ensureDataFolders = ->
 			fs.mkdirSync dir
 premarker = (article) ->
 	article.md = article.md.replace ///
-			! \[ ([\s\S]+?) \]
+			! \[ ([\s\S]*) \]
 				\( ([\S]+?) \s? ("[^"]*")? \)
 		///, (match, alt, src, title) ->
 			src = "/files/#{article.slug}/#{src}"

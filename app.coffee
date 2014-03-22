@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'data')))
 # development only
 if app.get('env') is 'development'
 	app.use(express.errorHandler())
-	# require("./lib/gen.coffee").gen()
+	require("./lib/gen.coffee").gen(false)
 	# Use devreload for automatic reloading
 	#devreload = require 'devreload'
 	#devreload.listen app, {
