@@ -1,26 +1,30 @@
-send = require 'send'
 url = require 'url'
+md = new (require 'showdown').converter()#({extensions:[require './showdown-extensions.js']})
+renderer = (text, slug) ->
+	text = text.replace ///
+			! \[ ([\s\S]*?) \]
+				\( ([\S]+?) \s? ("[^"]*")? \)
+		///, (match, alt, src, title) ->
+			src = "/files/#{slug}/#{src}"
+			"""
+				<p>
+					<img alt="#{alt}" src="#{src}" title=#{title}></img>
+				</p>
+			"""
+	text = text.replace /\n\s*live\:([\w\d\-\_]+)\s*\n/, '\n<div id="live-$1" class="live-previewer"></div>\n'
+	md.makeHtml(text)
+
 express = require 'express'
 module.exports = class Write
 	constructor: (@app, @db)->
 		@app.get '/article/:slug', @get
-		@app.use '/article/:slug/:file', @getFile
 		@app.get '/article/', (req, res)->
 			res.redirect '/'
 	get: (req,res) =>
 		slug = req.params.slug
 		@db.getArticle slug, (err, post) =>
+			post.md = renderer(post.md, post.slug)
 			if post?
 				res.render 'article.jade', post
 			else
 				res.redirect '/'
-	getFile: (req, res) =>
-		fileLoc = req.path.replace /^article\/(([^\/]+)\/(.+))$/
-		console.log req.params
-		redir = ->
-				res.redirect '/article/' + fileLoc[2]
-		send(req, fileLoc[1])
-			.root('./data/files')
-			.on('error', redir)
-			.on('directory', redir)
-			.pipe(res)

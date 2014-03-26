@@ -34,7 +34,9 @@ exports.buildVendors = (min) ->
       "addon/edit/continuelist.js", "addon/fold/markdown-fold.js",
       "addon/selection/active-line.js", "addon/selection/mark-selection.js",
       "addon/hint/show-hint.js",
-      "mode/markdown/markdown.js"
+      "mode/markdown/markdown.js",
+      "mode/xml/xml.js", "mode/htmlmixed/htmlmixed.js",
+      "mode/css/css.js", "mode/javascript/javascript.js",
     ])[...]
   jsFiles.push p.resolve('node_modules/showdown/',"compressed/showdown.js")
 
