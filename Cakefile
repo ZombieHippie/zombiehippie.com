@@ -1,3 +1,4 @@
+coffee = require 'coffee-script/register'
 gen = require './lib/gen.coffee'
 task 'build', 'populate ./static files', (o)->
 	gen.gen()
@@ -11,5 +12,5 @@ task 'watch', 'watch to build ./static files', (o)->
 	coffeeFW.on 'change', ->
 		console.log 'Change detected on coffee files\nCompiling...'
 		gen.buildSrcCoffee()
-task 'build:vendors', './vendor files to ./static files', buildVendors
-task 'build:src', './src to ./static', buildSrc
+task 'build:vendors', './vendor files to ./static files', gen.buildVendors
+task 'build:src', './src to ./static', gen.buildSrc
