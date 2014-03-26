@@ -7,6 +7,15 @@ block head
 			padding: 3em;
 			background: #111;
 		}
+		.CodeMirror {
+			border: 1px solid #eee;
+			height: auto;
+		}
+		.CodeMirror-scroll {
+			overflow-y: hidden;
+			overflow-x: auto;
+		}
+
 
 block content
 	.jumbotron
@@ -64,7 +73,7 @@ block footer
 					break;
 				}
 				this.innerText = ""
-				CodeMirror(this, {mode: mode, value: code})
+				CodeMirror(this, {mode: "text/" + mode, value: code})
 				.on("change", function(cm) {
 					var code = cm.getValue();
 					switch (mode) {
