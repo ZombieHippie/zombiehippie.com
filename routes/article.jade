@@ -36,19 +36,6 @@ block footer
 		script#article-script!="(function(){" + article_script + "}());"
 	script.
 		(function(){
-			function updateCode (code, mode, selector) {
-				switch (mode) {
-				case "css":
-					$(selector).find(">style").html(code);
-					break;
-				case "html":
-					$(selector).find(">div").html(code);
-					break;
-				case "javascript":
-					$(selector).find(">script").html(code);
-					break;
-				}
-			}
 			$("code.live").each(function(){
 				var mode;
 				var selector = (this.className.match(/\#[\w\d\-\_]+$/) || [false])[0]
@@ -62,18 +49,38 @@ block footer
 				else if (/^script\s/.test(this.className))
 					mode = "javascript";
 				else return console.log("Unknown live type");
+				var code = this.innerText;
 				switch (mode) {
 				case "css":
-					$(selector).append("<style>" + this.innerText + "</style>");
+					$(selector).append("<style>" + code + "</style>");
 					break;
 				case "html":
-					$(selector).append("<div>" + this.innerText + "</div>");
+					$(selector).append("<div>" + code + "</div>");
 					break;
 				case "javascript":
-					$(selector).append("<script>" + this.innerText + "<\/script>");
+					$(selector).append("<script>" + code + "<\/script>");
 					break;
 				default:
 					break;
 				}
-			})
+				this.innerText = ""
+				CodeMirror(this, {mode: mode, value: code})
+				.on("change", function(cm) {
+					var code = cm.getValue();
+					switch (mode) {
+					case "css":
+						$(selector).children("style").html(code);
+						break;
+					case "html":
+						$(selector).children("div").html(code);
+						break;
+					case "javascript":
+						$(selector).children("script").remove();
+						$(selector).append("<script>" + code + "<\/script>");
+						break;
+					default:
+						break;
+					}
+				});
+			});
 		}())
