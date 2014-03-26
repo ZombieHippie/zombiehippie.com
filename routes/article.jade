@@ -8,8 +8,8 @@ block head
 			background: #111;
 		}
 		.CodeMirror {
-			border: 1px solid #eee;
 			height: auto;
+			background: transparent;
 		}
 		.CodeMirror-scroll {
 			overflow-y: hidden;
@@ -73,7 +73,7 @@ block footer
 					break;
 				}
 				this.innerText = ""
-				CodeMirror(this, {mode: "text/" + mode, value: code})
+				CodeMirror(this, {mode: "text/" + mode, value: code.replace(/[\s\n]*$/, "")})
 				.on("change", function(cm) {
 					var code = cm.getValue();
 					switch (mode) {
