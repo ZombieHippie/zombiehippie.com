@@ -1,5 +1,13 @@
 extends views/layout
 
+block head
+	style.
+		.live-previewer {
+			margin: 1em 0;
+			padding: 3em;
+			background: #111;
+		}
+
 block content
 	.jumbotron
 		h1#out ZombieHippie
@@ -26,3 +34,46 @@ block content
 block footer
 	if article_script
 		script#article-script!="(function(){" + article_script + "}());"
+	script.
+		(function(){
+			function updateCode (code, mode, selector) {
+				switch (mode) {
+				case "css":
+					$(selector).find(">style").html(code);
+					break;
+				case "html":
+					$(selector).find(">div").html(code);
+					break;
+				case "javascript":
+					$(selector).find(">script").html(code);
+					break;
+				}
+			}
+			$("code.live").each(function(){
+				var mode;
+				var selector = (this.className.match(/\#[\w\d\-\_]+$/) || [false])[0]
+				if (!selector) return;
+				else selector = "#live-" + selector.slice(1);
+
+				if (/^css\s/.test(this.className))
+					mode = "css";
+				else if (/^html\s/.test(this.className))
+					mode = "html";
+				else if (/^script\s/.test(this.className))
+					mode = "javascript";
+				else return console.log("Unknown live type");
+				switch (mode) {
+				case "css":
+					$(selector).append("<style>" + this.innerText + "</style>");
+					break;
+				case "html":
+					$(selector).append("<div>" + this.innerText + "</div>");
+					break;
+				case "javascript":
+					$(selector).append("<script>" + this.innerText + "<\/script>");
+					break;
+				default:
+					break;
+				}
+			})
+		}())

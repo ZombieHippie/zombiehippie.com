@@ -14,7 +14,7 @@ module.exports = class Write
 					isNew: true}
 			
 		if req.params.slug?
-			@db.getArticle req.params.slug, true, (err, article)->
+			@db.getArticle req.params.slug, (err, article)->
 				if err
 					res.end(err)
 				else

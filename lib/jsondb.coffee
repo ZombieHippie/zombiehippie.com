@@ -1,6 +1,4 @@
 fs = require 'fs'
-md = require 'showdown'
-md = new md.converter()#({extensions:[require './showdown-extensions.js']})
 
 repath = (path) ->
 	path.replace(/[\\\/]+/g, '/')
@@ -10,17 +8,6 @@ ensureDataFolders = ->
 	for dir in ["data", "data/articles", "data/files"]
 		if not fs.existsSync dir
 			fs.mkdirSync dir
-premarker = (article) ->
-	article.md = article.md.replace ///
-			! \[ ([\s\S]*?) \]
-				\( ([\S]+?) \s? ("[^"]*")? \)
-		///, (match, alt, src, title) ->
-			src = "/files/#{article.slug}/#{src}"
-			"""
-				<p>
-					<img alt="#{alt}" src="#{src}" title=#{title}></img>
-				</p>
-			"""
 sortedSlugs = (articles, property) ->
 	props = []
 	propToSlug = {}
@@ -69,16 +56,10 @@ module.exports = class jsondb
 	sortArticles: ->
 		@slugsByDate = sortedSlugs @db.articles, "date"
 		@slugsByTitle = sortedSlugs @db.articles, "title"
-	getArticle: (slug, skipMD, fn)->
-		if not fn?
-			fn = skipMD
-			skipMD = false
+	getArticle: (slug, fn)->
 		if article = @db.articles[slug]
 			console.log article
 			article.md = String(fs.readFileSync("data/articles/" + article.slug + ".md"))
-			if not skipMD
-				premarker article
-				article.md = md.makeHtml article.md
 			fn null, article
 		else
 			fn "Article with slug:#{slug} does not exist!"
