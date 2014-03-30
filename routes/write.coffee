@@ -2,8 +2,12 @@ module.exports = class Write
 	constructor: (@app, @db)->
 		@app.get '/write/:slug?', @get
 		@app.post '/write/:slug?', @post
+		@app.get '/delete/:slug', @delete
+	delete: (req, res) =>
+		return res.redirect('/') if not req.session.user
+		@db.deleteArticle(req.params.slug)
 	get: (req,res) =>
-		return res.redirect('/login') if not req.session.user
+		return res.redirect('/login?redir=' + req.url) if not req.session.user
 		article = null
 		render = (article = {title:"",description:"",slug:"",md:"", article_script:"", article_styles:""}) =>
 			res.render 'write.jade', {
@@ -21,7 +25,6 @@ module.exports = class Write
 					render article
 		else
 			render()
-
 	post: (req,res) =>
 		return res.redirect('/') if not req.session.user
 		@write req.body, req.session.user.name, (err, post)->
