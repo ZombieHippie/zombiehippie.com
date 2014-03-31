@@ -2,7 +2,7 @@ url = require 'url'
 md = new (require 'showdown').converter()#({extensions:[require './showdown-extensions.js']})
 renderer = (text, slug) ->
 	text = text.replace ///
-			! \[ ([\s\S]*?) \]
+			! \[ ([^\n]*?) \]
 				\( ([\S]+?) \s? ("[^"]*")? \)
 		///, (match, alt, src, title) ->
 			src = "/files/#{slug}/#{src}"
@@ -11,7 +11,7 @@ renderer = (text, slug) ->
 					<img alt="#{alt}" src="#{src}" title=#{title}></img>
 				</p>
 			"""
-	text = text.replace /\n\s*live\:([\w\d\-\_]+)\s*\n/, '\n<div id="live-$1" class="live-previewer"></div>\n'
+	text = text.replace /\blive\:([\S]+)/g, '\n<div id="live-$1" class="live-previewer"></div>\n'
 	md.makeHtml(text)
 
 express = require 'express'

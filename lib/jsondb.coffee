@@ -50,7 +50,11 @@ module.exports = class jsondb
 		if slug is ""
 			return []
 		else
-			return fs.readdirSync(repath("data/files/" + slug))
+			try
+				return fs.readdirSync(repath("data/files/" + slug))
+			catch e
+				return []
+			
 	uploadFile: (slug, filename, data)->
 		fs.writeFileSync(repath("data/files/" + slug + "/" + filename), data)
 	sortArticles: ->
@@ -63,6 +67,10 @@ module.exports = class jsondb
 			fn null, article
 		else
 			fn "Article with slug:#{slug} does not exist!"
+	deleteArticle: (slug) ->
+		if @db.articles[slug]
+			delete @db.articles[slug]
+			@sortArticles()
 	getArticlesBy: (prop, count, fn) =>
 		if not fn?
 			fn = count
