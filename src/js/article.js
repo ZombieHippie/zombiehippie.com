@@ -12,6 +12,7 @@
 		else if (/^script\s/.test(this.className))
 			mode = "javascript";
 		else return console.log("Unknown live type");
+		liveCode.addClass(mode)
 		var code = this.innerText;
 		switch (mode) {
 		case "css":
@@ -27,7 +28,11 @@
 			break;
 		}
 		this.innerText = ""
-		CodeMirror(this.parentNode, {mode: "text/" + mode, value: code.replace(/[\s\n]*$/, "")})
+		CodeMirror(this.parentNode, {
+			mode: "text/" + mode,
+			value: code.replace(/[\s\n]*$/, ""),
+			lineWrapping: true
+		})
 		.on("change", function(cm) {
 			var code = cm.getValue();
 			switch (mode) {
