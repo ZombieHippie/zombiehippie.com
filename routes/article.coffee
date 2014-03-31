@@ -11,7 +11,7 @@ renderer = (text, slug) ->
 					<img alt="#{alt}" src="#{src}" title=#{title}></img>
 				</p>
 			"""
-	text = text.replace /\blive\:([\w\d\-\_]+)\s*\n/, '\n<div id="$1" class="live-previewer"></div>\n'
+	text = text.replace /\blive\:([\S]+)/g, '\n<div id="live-$1" class="live-previewer"></div>\n'
 	md.makeHtml(text)
 
 express = require 'express'

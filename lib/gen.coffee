@@ -47,26 +47,25 @@ exports.buildVendors = (min) ->
   new quick({
       files: {
         "static/js/vendors.js": {
-          files: vendorsJSArr,
-          compiler: if min then uglyCompiler else false,
-          separator: ";\n"
+          files: vendorsJSArr
         },
         "static/js/editor-vendors.js": {
-          files: editorVendorsJSArr,
-          compiler: if min then uglyCompiler else false,
-          separator: ";\n"
+          files: editorVendorsJSArr
         },
         "static/js/editor-script.js": {
-          files: "src/js/editor.js",
-          compiler: if min then uglyCompiler else false,
-          separator: ";\n"
+          files: "src/js/editor.js"
+        },
+        "static/js/article-script.js": {
+          files: "src/js/article.js"
         },
         "static/css/vendors.css": {
           files: cssFiles,
           compiler: if min then cssCompiler else false,
           separator: "\n"
         }
-      }
+      },
+      compiler: if min then uglyCompiler else false,
+      separator: ";\n"
     }).generate()
 exports.buildSrc = (min = true)->
   exports.buildSrcCoffee(min)
