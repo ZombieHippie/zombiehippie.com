@@ -14,7 +14,7 @@
     "uglify-js": "~2.4.12",
     "nib":"1.0.x",
     "stylus": "0.42.x",
-    "quick-compile": "0.0.2"
+    "quick-compile": "0.0.3"
   },
   "devDependencies": {
     "nodemon": "1.0.x",

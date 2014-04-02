@@ -24,16 +24,13 @@
 		case "javascript":
 			liveCode.append("<script>" + code + "<\/script>");
 			break;
-		default:
-			break;
 		}
 		this.innerText = ""
 		CodeMirror(this.parentNode, {
 			mode: "text/" + mode,
 			value: code.replace(/[\s\n]*$/, ""),
 			lineWrapping: true
-		})
-		.on("change", function(cm) {
+		}).on("change", function(cm) {
 			var code = cm.getValue();
 			switch (mode) {
 			case "css":
@@ -47,8 +44,6 @@
 			case "javascript":
 				liveCode.children("script").remove();
 				liveCode.append("<script>" + code + "<\/script>");
-				break;
-			default:
 				break;
 			}
 		});

@@ -1,50 +1,45 @@
 # This is for development purposes
-ndm = require 'nodemon'
 devreload = require 'devreload'
+gen = require './lib/gen.coffee'
+ndm = require 'nodemon'
 p = require 'path'
-# Use devreload for reloading the browser
-devreload.listen {watch:null, port:9999}
+
+if devreload
+  # Use devreload for reloading the browser
+  devreload.listen {watch:null, port:9999}
+else devreload = false
 
 std = (data)->console.log data.toString()
-
-gen = (type, callback)->
-  # Generate client styles/scripts on server reload
-  spawn = require('child_process').spawn 'cmd', ["/c", "cake", 'build:'+type]
-  console.log "Generating #{type} files"
-  spawn.on 'error', std
-  spawn.stdout.on 'data', std
-  spawn.stderr.on 'data', std
-  spawn.on 'exit', callback
-checkGenSrc = (callback)->
-  if '--gensrc' in process.argv
-    gen 'src', callback
-  else callback()
-checkGenVendors = (callback)->
-  if '--genvendors' in process.argv
-    gen 'vendors', callback
-  else callback()
-checkGen = (callback)->
-  checkGenSrc ->
-    checkGenVendors callback
+willGenSrc = '--gensrc' in process.argv or '--gen' in process.argv
+willGenVend = '--genvendors' in process.argv or '--gen' in process.argv
+checkGenSrc = ->
+  do gen.buildSrc if willGenSrc
+checkGenVendors = ->
+  do gen.buildVendors if willGenVend
+checkGen = ->
+  checkGenSrc()
+  checkGenVendors()
 start = ->
-  ext = 'jade coffee'
+  ext = 'jade coffee js'
   watch = ['routes/','app.coffee']
-  if '--genvendors' in process.argv
+  if willGenVend
     watch.push 'vendors/'
-    ext += ' js css'
-  if '--gensrc' in process.argv
+    ext += ' css'
+  if willGenSrc
     watch.push 'src/coffee/'
+    watch.push 'src/js/'
     watch.push 'src/stylus/'
     ext += ' styl'
   ndm {
-    script:'app.coffee'
+    script: 'app.coffee'
     watch
     ext
   }
-  .on 'restart', (files)->
-    checkGen ->
-      devreload.reload()
+  .on 'restart', ->
+    checkGen()
+    devreload.reload()
   .on 'log', (log) ->
     console.log log.colour
-checkGen ->
-  start()
+
+checkGen()
+start()

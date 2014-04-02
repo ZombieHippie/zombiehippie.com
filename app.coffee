@@ -25,8 +25,11 @@ app.use(express.static(path.join(__dirname, 'data')))
 # development only
 if app.get('env') is 'development'
 	app.use(express.errorHandler())
-	require("./lib/gen.coffee").gen(false)
-	# Use devreload for automatic reloading
+	#if '--nogen' in process.argv
+	#	console.log "Set to not generate files"
+	#else
+	#	require("./lib/gen.coffee").gen(false)
+	## Use devreload for automatic reloading
 	#devreload = require 'devreload'
 	#devreload.listen app, {
 	#	watch:[__dirname+'/src',__dirname+'/static',__dirname+'/routes'],
