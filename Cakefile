@@ -2,15 +2,11 @@ coffee = require 'coffee-script/register'
 gen = require './lib/gen.coffee'
 task 'build', 'populate ./static files', (o)->
 	gen.gen()
-task 'watch', 'watch to build ./static files', (o)->
+task 'watch', 'watch ./src to build ./static files', (o)->
 	directory = __dirname+"/src/"
-	stylusFW = fs.watch directory + 'stylus/', {interval:500}
-	stylusFW.on 'change', ->
-		console.log 'Change detected on stylus files\nCompiling...'
-		gen.buildSrcStylus()
-	coffeeFW = fs.watch directory + 'coffee/', {interval:500}
-	coffeeFW.on 'change', ->
-		console.log 'Change detected on coffee files\nCompiling...'
-		gen.buildSrcCoffee()
+	srcFW = fs.watch directory, {interval:500}
+	srcFW.on 'change', ->
+		console.log 'Change detected on src files\nCompiling...'
+		gen.buildSrc()
 task 'build:vendors', './vendor files to ./static files', gen.buildVendors
 task 'build:src', './src to ./static', gen.buildSrc

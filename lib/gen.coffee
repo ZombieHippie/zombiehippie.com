@@ -75,7 +75,7 @@ exports.init = (min = false) ->
       }
       cacheFile: "gensrc.cache.json"
     })
-ensure = (min = false) ->
+ensure = (min) ->
   if not vendgen?
     exports.init(min)
 exports.gen = (min) ->
