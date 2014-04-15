@@ -5,8 +5,10 @@ block content
 		h1#out ZombieHippie
 		p#output the all media collection
 	.container
+		-var now = Date.now()
+		-var toDays = 1 / 1000 / 60 / 60 / 24
 		for v in tiles
-			.tile.col-lg-3.col-md-4.col-sm-6(id=v.slug)
+			.tile.col-lg-3.col-md-4.col-sm-6(id=v.slug class=("days-old-" + Math.round((now - parseInt(v.date)) * toDays)))
 				a.row(href="/article/"+v.slug)
 					.row
 						strong=v.title
@@ -15,3 +17,11 @@ block content
 						span=v.author
 					.row
 						span.date=(new Date(parseInt(v.date))).toString().replace(/(^.*?)\s\d+:.*$/,"$1")
+		style.
+			.tile.days-old-0 a { color:#FE0185 }
+			.tile.days-old-1 a { color:#EE0185 }
+			.tile.days-old-2 a { color:#DE0185 }
+			.tile.days-old-3 a { color:#CE0185 }
+			.tile.days-old-4 a,
+			.tile.days-old-5 a,
+			.tile.days-old-6 a { color:#BE0185 }
