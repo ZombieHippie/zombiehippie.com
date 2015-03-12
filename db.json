@@ -1,0 +1,180 @@
+{
+    "articles": {
+        "basic-css3-transitions": {
+            "description": "Some basic example css3 transition elements",
+            "title": "Basic CSS3 transitions",
+            "slug": "basic-css3-transitions",
+            "article_script": "",
+            "article_styles": "",
+            "date": 1395810526527,
+            "author": "C",
+            "md": "<div id=\"live-hover1\" class=\"live-previewer\"></div>\n\n<pre><code class=\"html live #hover1\">&lt;div class=\"hover-transition\"&gt;\n  Hover over me\n&lt;/div&gt;\n</code></pre>\n\n<pre><code class=\"css live #hover1\">.hover-transition {\n  padding: .5em;\n  font-size: 2em;\n  background: lawngreen;\n  border-radius: 10px;\n  transition: background 1s ease;\n}\n.hover-transition:hover {\n  background: aliceblue;\n}\n</code></pre>\n\n<h2 id=\"changethecodeabove\">Change the code above</h2>"
+        },
+        "script-test": {
+            "description": "Super simple script with event.which event for jQuery",
+            "title": "Script test",
+            "slug": "script-test",
+            "article_script": "",
+            "article_styles": "",
+            "date": 1396234213873,
+            "author": "C",
+            "md": "<div id=\"live-clicker\" class=\"live-previewer\"></div>\n\n<pre><code class=\"html live #clicker\">&lt;div id=\"clicker\" style=\"width:4em; height:4em; background: lawngreen\"&gt;\nevent.which here\n&lt;/div&gt;\n</code></pre>\n\n<pre><code class=\"script live #clicker\">$(\"#clicker\").on(\"click\", function (event) {\n    this.innerHTML = event.which;\n});\n</code></pre>"
+        },
+        "move-square": {
+            "description": "Super tutorial about transition effects with rotateZ and margin-left",
+            "title": "Toggle move square",
+            "slug": "move-square",
+            "article_script": "",
+            "article_styles": "",
+            "date": 1396284963218,
+            "author": "C",
+            "md": "<div id=\"live-examples\" class=\"live-previewer\"></div>\n\n<pre><code class=\"css live #examples\">.square {\n    width: 2em;\n    height: 2em;\n    border: 2px solid whitesmoke;\n}\n</code></pre>\n\n<h2 id=\"animatedrotation\">Animated Rotation</h2>\n\n<div id=\"live-example1\" class=\"live-previewer\"></div>\n\n<pre><code class=\"html live #example1\">&lt;div id=\"animated-square\" class=\"square\"&gt;&lt;/div&gt;\n</code></pre>\n\n<pre><code class=\"script live #example1\">$(\"#animated-square\").click(function () {\n    $(this).toggleClass(\"moved\");\n})\n</code></pre>\n\n<pre><code class=\"css live #example1\">#animated-square {\n    -webkit-transition: -webkit-transform 1s ease, margin 1s ease;\n    transition: transform 1s ease, margin 1s ease;\n    background: aliceblue;\n}\n#animated-square.moved {\n    -webkit-transform: rotateZ(200deg);\n    transform: rotateZ(200deg);\n      margin-left: 50%;\n}\n</code></pre>\n\n<h2 id=\"animatedscale\">Animated Scale</h2>\n\n<div id=\"live-example2\" class=\"live-previewer\"></div>\n\n<pre><code class=\"html live #example2\">&lt;div id=\"animated-square-2\" class=\"square\"&gt;&lt;/div&gt;\n</code></pre>\n\n<p>Same class, just different id.</p>\n\n<pre><code class=\"script live #example2\">$(\"#animated-square-2\").click(function () {\n    $(this).toggleClass(\"moved\");\n})\n</code></pre>\n\n<p>Same script also.</p>\n\n<pre><code class=\"css live #example2\">#animated-square-2 {\n    -webkit-transition: -webkit-transform 1s ease, margin 1s ease;\n    transition: transform 1s ease, margin 1s ease;\n    background: lawngreen;\n}\n#animated-square-2.moved {\n    -webkit-transform: scale(10);\n    transform: scale(10);\n      margin-left: 50%;\n}\n</code></pre>\n\n<p>Notice the <code>scale(10)</code> does not require a vendor prefix.</p>"
+        },
+        "images": {
+            "description": "",
+            "title": "Images",
+            "slug": "images",
+            "article_script": "",
+            "article_styles": "",
+            "date": 1397502677413,
+            "author": "C",
+            "md": "<div id=\"live-a\" class=\"live-previewer\"></div>\n\n<pre><code class=\"script live #a\">function resizeImg(img) {\n      var par = img.parentNode\n    img.height = par.offsetWidth;\n    img.width = img.height;\n}\n</code></pre>\n\n<pre><code class=\"html live #a\">&lt;img src=\"http://inkblur.com/files/images/graphicdesign.png\" border=\"0\" onload=\"resizeImg(this)\"&gt;\n</code></pre>\n\n<p><a href=\"http://stackoverflow.com/a/1301426/2096729\">src</a></p>"
+        },
+        "cm-scroll-bug": {
+            "description": "",
+            "title": "CodeMirror scrolling bugs",
+            "slug": "cm-scroll-bug",
+            "article_script": "",
+            "article_styles": "",
+            "date": 1396379610326,
+            "author": "C",
+            "md": "<div id=\"live-toggle\" class=\"live-previewer\"></div>\n\n<pre><code class=\"html live #toggle\">&lt;h1 id=\"toggle\"&gt;Toggle&lt;/h1&gt;\n&lt;h1 id=\"add\"&gt;Add content&lt;/h1&gt;\n</code></pre>\n\n<blockquote>\n  <p>When toggle is yellow, you may have a hard time scrolling over the codemirror instances below.</p>\n</blockquote>\n\n<pre><code class=\"css live #toggle\">#add {\n    color: whitesmoke;\n}\n\n.zeroMargins {\n    margin: 0;\n}\n\n.zeroMargins #toggle {\ncolor: yellow;\n}\n</code></pre>\n\n<pre><code class=\"script live #toggle\">$(\"#toggle\").click(function() {\n    $(document.body).toggleClass(\"zeroMargins\")\n});\n$(\"#add\").click(function() {\n  $(\".extras\").append(\"&lt;br&gt;Extra Content&lt;br&gt;\")\n});\n</code></pre>\n\n<div class=\"extras\"></div>"
+        },
+        "transitionend-no-fire": {
+            "description": "",
+            "title": "Transition End?",
+            "slug": "transitionend-no-fire",
+            "article_script": "",
+            "article_styles": "",
+            "date": 1396380763296,
+            "author": "C",
+            "md": "<div id=\"live-test\" class=\"live-previewer\"></div>\n\n<pre><code class=\"html live #test\">&lt;div id=\"animating\"&gt;ClickMe&lt;/div&gt;\n</code></pre>\n\n<pre><code class=\"script live #test\">$(\"#animating\").on(\"click\", function () {\n    $(this).toggleClass(\"forward\");\n});\n$(\"#animating\").on(\"transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd\", function (event) {\n    console.log(event);\n});\n</code></pre>\n\n<blockquote>\n  <p>Event names pulled from <a href=\"http://stackoverflow.com/questions/7134584/how-do-i-use-transitionend-in-jquery\">this stackoverflow question</a></p>\n</blockquote>\n\n<pre><code class=\"css live #test\">#output {}\n#animating {\n    float:left;\n    background: whitesmoke;\n    padding: 1em;\n    transition: transform 1s ease-in;\n    -webkit-transition: -webkit-transform 1s ease-in;\n    transform: translateX(0);\n    -webkit-transform: translateX(0);\n}\n#animating.forward {\n    transform: translateX(500%);\n    -webkit-transform: translateX(500%);\n}\n</code></pre>"
+        },
+        "wire-cheat-sheet": {
+            "description": "Cheat sheet of some of the most commonly used tags and attributes in WIRE.",
+            "title": "RareWire WIRE XML Cheat sheet",
+            "slug": "wire-cheat-sheet",
+            "article_script": "",
+            "article_styles": "",
+            "date": 1396849639058,
+            "author": "C",
+            "md": "<p>This is a quick cheat sheet for anyone who needs assistance in what attributes they can or should use. The diagnosis here is generated from several example files and other files floating around the office.</p>\n\n<p>The complete diagnosis can be downloaded as a zip file here: <a href=\"/files/wire-cheat-sheet/diagnosis.zip\">diagnosis.zip</a></p>\n\n<p>Or you can download <a href=\"/files/wire-cheat-sheet/diagnosis-r2.zip\">diagnosis-r2.zip</a> (might be better)</p>\n\n<h2>Tags</h2>\n\n<p>List of common tags and their attribute usage count.</p>\n\n<div class=\"row\">\n<div class=\"col-xs-6\" id=\"panel\">\n<h3>Panel</h3>\n<pre>\n103    name\n102    height\n101    width\n63    background\n27    alias\n24    onclickup\n24    align\n22    alpha\n20    valign\n19    cornerradius\n18    ypos\n15    xpos\n11    bottomof\n9    borderwidth\n9    bordercolor\n8    _mag\n7    onscrollto\n7    _page\n5    margin\n4    shadowyoffset\n4    shadowxoffset\n4    shadowradius\n4    shadowopacity\n4    lwidth\n4    lheight\n3    right\n3    left\n3    clip\n3    _current\n2    topmargin\n2    rightof\n2    _description\n1    style\n1    state\n1    rightmargin\n1    ondevicerotate\n1    dataSourceIndex\n</pre>\n</div>\n\n<div class=\"col-xs-6\">\n<h3>Text</h3>\n<pre>\n46    width\n46    name\n46    height\n44    size\n44    font\n44    alignment\n43    color\n38    text\n12    align\n8    valign\n6    ignoretouches\n6    bottomof\n6    alias\n3    alpha\n2    style\n2    leftinset\n1    ypos\n1    xpos\n1    topmargin\n1    rightof\n1    rightmargin\n1    onclickup\n1    onclick\n1    margin\n1    background\n</pre>\n</div>\n\n<div class=\"col-xs-6\">\n<h3>Web</h3>\n<pre>\n4    width\n4    name\n4    height\n4    alias\n3    valign\n2    url\n2    pagetofit\n2    html\n1    lheight\n1    alpha\n1    align\n</pre>\n</div>\n\n<div class=\"col-xs-6\">\n<h3>Translate</h3>\n<pre>\n18    time\n18    target\n12    xpos\n6    ypos\n2    lxpos\n</pre>\n</div>\n\n<p></div></p>\n\n<h2>Attributes</h2>\n\n<p>List of common attributes and their value usage count.</p>\n\n<div class=\"row\">\n<div class=\"col-xs-6\" id=\"panel\">\n<h3>font=\"\"</h3>\n<pre>\n1    GillSans\n1    \n9    helvetica\n6    Helvetica-Bold\n5    HelveticaNeue-Bold\n3    HelveticaNeue\n2    arial\n2    Helvetica\n1    STHeitiSC-Light\n1    STHeit iSC-Light\n1    HoeflerText-Regular\n1    HelveticaNue\n</pre>\n</div>\n\n<div class=\"col-xs-6\">\n<h3>right=\"\"</h3>\n<pre>\n1    4%\n1    20\n1    2%\n</pre>\n</div>\n\n<div class=\"col-xs-6\">\n<h3>rightof=\"\"</h3>\n<pre>\n1    user\n1    button2\n1    button1\n</pre>\n<i>These are the <code>name</code>s of other elements on the page. </i>\n</div>\n\n<div class=\"col-xs-6\">\n<h3>rightmargin=\"\"</h3>\n<pre>\n3    20\n1    2%\n1    10\n</pre>\n</div>\n\n<div class=\"col-xs-6\">\n<h3>margin=\"\"</h3>\n<pre>\n5    15\n2    20\n2    10\n</pre>\n</div>\n\n<div class=\"col-xs-6\">\n<h3>translate=\"\"</h3>\n<pre>\n18    time\n18    target\n12    xpos\n6    ypos\n2    lxpos\n</pre>\n</div>\n\n<p></div></p>"
+        },
+        "perfect-wire-app-workflow": {
+            "description": "My perfect workflow for writing RareWire Apps",
+            "title": "Perfect WIRE App workflow",
+            "slug": "perfect-wire-app-workflow",
+            "article_script": "",
+            "article_styles": "",
+            "date": 1396849920347,
+            "author": "C",
+            "md": "<p>I am a <a href=\"http://nodejs.org/\">node.js</a> programmer by trade, and as such I am accustomed to using preprocessors for my html documents and converting to writing bare-bones xml without <a href=\"http://learn.shayhowe.com/advanced-html-css/preprocessors\">preprocessing</a> something, was actually slightly scary for me. I feel as though it would be a lot more typing and a lot less readable than writing in my favorite preprocessor for html, <a href=\"http://jade-lang.com\">jade</a>.</p>\n\n<p>So, being a nodejs guru by trade I started a little project called <code>jade-to-wire</code> which can be used to convert clean, beautiful jade into standard WIRE XML with slight modifications to the jade output.</p>\n\n<h2 id=\"ftps\">FTPS</h2>\n\n<p>This can be combined with the plugin <a href=\"http://wbond.net/sublime_packages/sftp/installation\">SFTP for Sublime Text 3</a> to automatically upload your <code>.wire</code> files upon change, using the plugin's powerful monitoring system.</p>\n\n<p><strong>Note: When setting the sftp-config file, use <code>ftps</code> for the protocol, and use <code>/</code> for the path</strong></p>\n\n<h2 id=\"usingjade\">Using jade</h2>\n\n<p>The way you set this up is by <a href=\"http://nodejs.org/\">installing nodejs</a> on your system, and then installing <code>jade-to-wire</code> globally via npm (node package manager):</p>\n\n<pre><code>npm install -g jade-to-wire\n</code></pre>\n\n<p>Then on whichever directory your project is in, you can run the commands:</p>\n\n<pre><code>nodevars &amp;&amp; jade-to-wire\n</code></pre>\n\n<p>To watch all jade files in the directory for changes, and on change, the wire files will be generated.</p>\n\n<p>Now whenever you save a jade file, it will be converted to wire file, and the SFTP plugin can automatically upload the file to <em>studio.rarewire.com</em>. Then snapshotted and tested through your fusebox app</p>\n\n<p><strong>Example:</strong></p>\n\n<pre><code class=\"jade\">wire\n    styles\n        style#square(width=\"33.3333%\" height=\"100%\" onclickup=\"setState\")\n        style#blackBtnText(align=\"center\" valign=\"center\" color=\"black\")\n    main\n        panel#navigation(width=\"100%\" height=\"20%\")\n            panel#square1.square(background=\"[js:randomColor()]\")\n                text.blackBtnText(text=\"[js:randomColor()]\")\n            panel#square2.square(rightof=\"square1\" background=\"[js:randomColor()]\")\n                text.blackBtnText(text=\"[js:randomColor()]\")\n            panel#square3.square(rightof=\"square2\" background=\"[js:randomColor()]\")\n                text.blackBtnText(text=\"[js:randomColor()]\")\n        panel#page-container(valign=\"bottom\" width=\"100%\" height=\"80%\" background=\"ffffff\")\n    actions\n        action#setState\n            sync(loop=\"no\")\n                assign(property=\"var:current\" value=\"name\")\n</code></pre>\n\n<p><strong>Converts to:</strong></p>\n\n<pre><code class=\"html\">&lt;wire&gt;\n  &lt;styles&gt;\n    &lt;style name=\"square\" width=\"33.3333%\" height=\"100%\" onclickup=\"setState\"&gt;&lt;/style&gt;\n    &lt;style name=\"blackBtnText\" align=\"center\" valign=\"center\" color=\"black\"&gt;&lt;/style&gt;\n  &lt;/styles&gt;\n  &lt;main&gt;\n    &lt;panel name=\"navigation\" width=\"100%\" height=\"20%\"&gt;\n      &lt;panel name=\"square1\" background=\"[js:randomColor()]\" style=\"square\"&gt;\n        &lt;text text=\"[js:randomColor()]\" style=\"blackBtnText\"&gt;&lt;/text&gt;\n      &lt;/panel&gt;\n      &lt;panel name=\"square2\" rightof=\"square1\" background=\"[js:randomColor()]\" style=\"square\"&gt;\n        &lt;text text=\"[js:randomColor()]\" style=\"blackBtnText\"&gt;&lt;/text&gt;\n      &lt;/panel&gt;\n      &lt;panel name=\"square3\" rightof=\"square2\" background=\"[js:randomColor()]\" style=\"square\"&gt;\n        &lt;text text=\"[js:randomColor()]\" style=\"blackBtnText\"&gt;&lt;/text&gt;\n      &lt;/panel&gt;\n    &lt;/panel&gt;\n    &lt;panel name=\"page-container\" valign=\"bottom\" width=\"100%\" height=\"80%\" background=\"ffffff\"&gt;&lt;/panel&gt;\n  &lt;/main&gt;\n  &lt;actions&gt;\n    &lt;action name=\"setState\"&gt;\n      &lt;sync loop=\"no\"&gt;\n        &lt;assign property=\"var:current\" value=\"name\"&gt;&lt;/assign&gt;\n      &lt;/sync&gt;\n    &lt;/action&gt;\n  &lt;/actions&gt;\n&lt;/wire&gt;\n</code></pre>\n\n<p>Note that I have a <code>randomColor</code> function in my <em>functions.html</em> file.\nAlso note that this code doesn't really do anything yet besides show some buttons of random colors, and a white page container.</p>\n\n<p>Things you'll notice is that where the jade output would use the attribute <code>id=</code>, jade-to-html replaces it with <code>name=</code> which is much more useful. Therefore <code>panel#whatever</code> converts into <code>&lt;panel name=\"whatever\"&gt;&lt;/panel&gt;</code>\nAnd when you specify <code>panel.whatever</code> it converts it to <code>&lt;panel style=\"whatever\"&gt;&lt;/panel&gt;</code> which is similar to classes in css.</p>"
+        },
+        "wire-lang": {
+            "description": "Basic introduction to RareWire's WIRE XML code",
+            "title": "Quickstart WIRE XML",
+            "slug": "wire-lang",
+            "article_script": "",
+            "article_styles": "",
+            "date": 1397240302240,
+            "author": "C",
+            "md": "<h1 id=\"ltmaingt\">&lt;main&gt;</h1>\n\n<div class=\"row\">\n<div class=\"col-sm-6\">\nEverything in your app that is displayed resides in the &lt;main&gt; tag, these elements can be objects, text, panels, and various forms of media.\nThese elements can all have events bound to them.\n</div>\n\n<p></div></p>\n\n<div class=\"row\">\n<div class=\"col-sm-6\">\n\n<pre><code class=\"xml live\">&lt;wire&gt;\n    &lt;main&gt;\n        &lt;panel width=\"400px\" height=\"400px\" background=\"FF9933\"&gt;\n            &lt;text text=\"I'm an orange square\" size=\"20\"/&gt;\n        &lt;/panel&gt;\n    &lt;/main&gt;\n&lt;/wire&gt;\n</code></pre>\n\n\n</div>\n\n<div class=\"col-sm-6\">\nThis wire file will show a basic orange square on the screen.\n</div>\n\n<p></div></p>\n\n<h1 id=\"ltactionsgt\">&lt;actions&gt;</h1>\n\n<p>Using an action, we can make our app interactive!</p>\n\n<div class=\"row\">\n<div class=\"col-sm-8\">\n\n<pre><code class=\"xml live\">&lt;wire&gt;\n    &lt;main&gt;\n        &lt;panel name=\"square\" onclickup=\"onSquareClick\" width=\"400px\" height=\"400px\" background=\"FF9933\"&gt;\n            &lt;text name=\"squareText\" text=\"I'm an orange square\" size=\"20\"/&gt;\n        &lt;/panel&gt;\n    &lt;/main&gt;\n    &lt;actions&gt;\n        &lt;action name=\"onSquareClick\"&gt;\n            &lt;assign property=\"object:square.background\" value=\"55CCFF\"/&gt;\n            &lt;assign property=\"object:squareText.text\" value=\"I'm a blue square!\"/&gt;\n        &lt;/action&gt;\n    &lt;/actions&gt;\n&lt;/wire&gt;\n</code></pre>\n\n\n</div>\n\n<div class=\"col-sm-4\">\nThis code turns the square blue and the text white when you touch it using the &lt;action&gt; and &lt;assign&gt; tags\n</div>\n\n<p></div></p>"
+        },
+        "Spencers-Problem": {
+            "description": "",
+            "title": "Spencer's Problem",
+            "slug": "Spencers-Problem",
+            "article_script": "",
+            "article_styles": "",
+            "date": 1398119537398,
+            "author": "C",
+            "md": "<p>Here is a fun math equation:</p>\n\n<div id=\"live-a\" class=\"live-previewer\"></div>\n\n<pre><code class=\"html live #a\">&lt;pre id=\"console\" onclick=\"regenerate()\"&gt;&lt;/pre&gt;\n</code></pre>\n\n<pre><code class=\"script live #a\">function regenerate() {\n\nvar working = Math.floor(Math.random() * 100) + 1\n//Print starting number\ndocument.getElementById(\"console\").innerHTML = \"&lt;strong&gt;\" + working + \"&lt;/strong&gt;&lt;br&gt;\"\nwhile(working &gt; 1) {\n    if (working % 2 === 0) {\n        // Even number\n        working /= 2\n    } else {\n        // Odd number\n        working *= 3\n        working += 1\n    }\n    //Print iteration\n    document.getElementById(\"console\").innerHTML += \"&lt;br&gt;\" + working\n}\n\n}\n\nregenerate()\n</code></pre>"
+        },
+        "parse-be-great": {
+            "description": "First impressions of Parse's free services as a database in the sky, and how I've used them in nodejs!",
+            "title": "Working with Parse!",
+            "slug": "parse-be-great",
+            "article_script": "",
+            "article_styles": "",
+            "date": 1400707687183,
+            "author": "C",
+            "md": "<p>I am happy to say that I am really enjoying the operability of <a href=\"http://parse.com\">Parse.com</a>.</p>\n\n<p><strong><em>Things I'm happy with:</em></strong></p>\n\n<ul>\n<li>Ease of use (Read the <strong>Setup</strong> in <a href=\"https://github.com/ParsePlatform/Anyimg\">this example project's README</a>)</li>\n<li>Great <a href=\"https://parse.com/docs/js_guide\">JavaScript Documentation</a></li>\n<li>30 requests/second free!</li>\n<li>3 cents per extra Gigabyte over 20Gb</li>\n<li>Excellent Analytics and dashboard</li>\n</ul>\n\n<p>I'm actually currently using parse for a shortlink creation app which is public at <a href=\"http://ink.parseapp.com/k\">ink.parseapp.com/k</a> and it is accessable via custom chrome extension I've developed available in the full project on <a href=\"https://github.com/ZombieHippie/parse-blink-share\">parse-blink-share GitHub</a></p>\n\n<p>The aforementioned project is written for nodejs, so there was little to no effort involved with adapting to the new platform! I look forward to deploying more with parse.</p>"
+        },
+        "TODO-Garbage-collection-app": {
+            "description": "A garbage collection app for cleaning away sources that you don't need on your server",
+            "title": "TODO: \"Garbage collection app\"",
+            "slug": "TODO-Garbage-collection-app",
+            "article_script": "",
+            "article_styles": "",
+            "date": 1400783328089,
+            "author": "C",
+            "md": "<h2 id=\"iwanttomakeanappthat\">I want to make an app that...</h2>\n\n<blockquote>\n  <p>Helps clean away necessary vs unnecessary libraries in our projects</p>\n</blockquote>\n\n<hr />\n\n<p>This app will generate a list of resources used by a browser from one server to compare with the filesystem of the server, then output which files likely go unused.</p>\n\n<h2 id=\"usecase\">Use Case</h2>\n\n<p>If there is a disorganized mess of folders, subfolders, js libraries of different versions, and stylesheets, it can tell the admin or project manager which files are going unused, and therefore causing clutter in the workspace.</p>\n\n<h2 id=\"thingstoconsider\">Things to consider</h2>\n\n<ul>\n<li>Browsing to many different parts of the same site</li>\n<li>Source filename Regex</li>\n<li>plain-text output for editing in ST3</li>\n<li>MD5s for possible duplicates</li>\n</ul>\n\n<h2 id=\"goal\">Goal</h2>\n\n<p>At the end of the day, we do not need to <em>delete</em> these files but we can build a very useful <code>.gitignore</code> with their information.</p>"
+        },
+        "install-jade-to-wire": {
+            "description": "Steps to install brew, nodejs, and jade-to-wire for OSX or Windows",
+            "title": "How to install Jade to Wire",
+            "slug": "install-jade-to-wire",
+            "article_script": "",
+            "article_styles": "",
+            "date": 1401478285408,
+            "author": "C",
+            "md": "<h2 id=\"osx\">OSX</h2>\n\n<ol>\n<li><p>Install Nodejs with <a href=\"http://brew.sh/\" title=\"homepage\">homebrew</a></p>\n\n<p><code>brew install node</code></p></li>\n<li><p>Install <a href=\"https://www.npmjs.org/package/jade-to-wire\" title=\"npmjs.org\">jade-to-wire</a></p>\n\n<p><code>sudo npm install -g jade-to-wire</code></p></li>\n<li><p>I recommend <a href=\"http://stackoverflow.com/questions/420456/open-terminal-here-in-mac-os-finder\" title=\"How to open terminal at folder in Finder\">enabling</a> <strong>New Terminal at Folder</strong> for OSX</p>\n\n<p>Then you can right click a folder in Finder and select <strong>Services</strong> > <strong>New Terminal at Folder</strong></p></li>\n</ol>\n\n<h2 id=\"windows\">Windows</h2>\n\n<ol>\n<li><p>Install Nodejs via <a href=\"http://nodejs.org/\" title=\"homepage\">nodejs.org</a></p></li>\n<li><p>Install <a href=\"https://www.npmjs.org/package/jade-to-wire\" title=\"npmjs.org\">jade-to-wire</a> through command prompt</p>\n\n<p><code>npm install -g jade-to-wire</code></p></li>\n<li><p>Set-up your path for node <em>everytime</em> you want to use the Jade to Wire commands</p>\n\n<p><code>nodevars &amp;&amp; jade-to-wire</code></p></li>\n<li><p>I recommend pressing <em>SHIFT</em> + <em>RIGHT CLICK</em> in file explorer to open a command prompt at the clicked folder</p></li>\n</ol>"
+        },
+        "say-logger": {
+            "description": "Say: A javascript browser debugging console logger.",
+            "title": "Say: browser logging",
+            "slug": "say-logger",
+            "article_script": "",
+            "article_styles": "",
+            "date": 1402583341126,
+            "author": "C",
+            "md": "<p>Recently, I've been using a very simple function to write information and debug it in my console:</p>\n\n<p><strong>Source:</strong></p>\n\n<div id=\"live-hover1\" class=\"live-previewer\"></div>\n\n<pre><code class=\"script live #hover1\">    window.Say = function (type, msg, info) {\n      if (type == null) type = \"log\"\n      if (info) console.log(\"&lt;\" + info + \"&gt;\")\n      console[type](msg)\n      window.said = msg\n    }\n</code></pre>\n\n<p>This allows us to write the type of logging (be it error, log, warn, or debug) and then specify the title for the data, which can make it much easier to read out put and find what you are looking for.</p>\n\n<p><strong>Running example:</strong></p>\n\n<div id=\"live-hover2\" class=\"live-previewer\"></div>\n\n<pre><code class=\"script live #hover2\">function getNavButton () {\n  var navbtn = document.getElementsByClassName(\"nav-toggle\")[0]\n  Say(\"debug\", navbtn, \"First nav button found\")\n}\n\ngetNavButton();\n</code></pre>\n\n<p><strong>Parse Usage Example:</strong></p>\n\n<pre><code class=\"script\">var checkInlineChange;\n\ncheckInlineChange = function(err, doc) {\n  if (err) {\n    return Say(\"error\", err, \"Couldn't save inline change\");\n  } else {\n    Say(\"debug\", doc, \"Saved inline change\");\n    return display.refresh(true);\n  }\n};\n</code></pre>\n\n<p>Also, we can use the window variable <code>said</code> to debug now.\nAlthough, this function is bloody simple, I have found it to be very useful in my recent applications using <a href=\"https://www.parse.com/docs/js_guide#objects-updating\">Parse</a>.</p>\n\n<p>Try opening up the console and writing <code>$(said)</code>, it should return a jQuery object of the navigation button in the top left!</p>"
+        },
+        "even-or-odd-javascript": {
+            "description": "Maybe the best way to check if a number is even or odd in Javascript",
+            "title": "Maybe the best Even number checker",
+            "slug": "even-or-odd-javascript",
+            "article_script": "",
+            "article_styles": "",
+            "date": 1406758353824,
+            "author": "C",
+            "md": "<pre><code class=\"script live #hover1\">function isEven (number) {\n  return eval(Array(number).join(\"!\")+0)\n}\n</code></pre>\n\n<pre><code class=\"html live #hover1\">&lt;input type=\"number\" onchange=\"$('#log').text( isEven(parseInt(this.value)) )\"&gt;\n&lt;br&gt;\n&lt;strong id=\"log\" style=\"color:white\"&gt;&lt;/strong&gt;\n</code></pre>\n\n<h1 id=\"test\">Test</h1>\n\n<div id=\"live-hover1\" class=\"live-previewer\"></div>"
+        },
+        "python-brainfuck": {
+            "description": "Brainfuck interpreter written in Python 3, open source software.",
+            "title": "Python Brainfuck",
+            "slug": "python-brainfuck",
+            "article_script": "",
+            "article_styles": "",
+            "date": 1407461786960,
+            "author": "C",
+            "md": "<h2 id=\"thepythonbrainfuckinterpreter\">The Python Brainfuck interpreter</h2>\n\n<p>I had a lot of fun writing this python code for my CSC101 college class, which I'm trying to pass out of. I particularly enjoyed writing my brainfuck code which follows:</p>\n\n<pre><code>-                       Start with minus 1\n&gt;+\n,                       Read input and print if input is enter key\n----- ----- ---         Check if enter key 13\n[\n  +++++ +++++ +++     Reset\n  [                   a 0 0\n    &gt;+\n    &gt;+\n    &lt;&lt;-\n  ]                   0 a a\n                      ^\n  &gt;&gt;\n  [                   0 a a\n    &lt;&lt;+\n    &gt;&gt;-\n  ]                   a a 0\n  &lt;\n                      a a 0\n                        ^\n  ,                 If not enter then input\n  ----- ----- ---   Check if enter key 13\n]\n-                       Mark last cell with minus 1\n&lt;+                      Start moving backwards\n[\n  -\n  &lt;+                    Until we get to first cell which equals minus 1\n]\n&gt;+                      Start moving forwards\n[\n  -\n  [\n    .                 Print if character\n    [-]               Reset current character\n  ]\n  &gt;+                  Until we get to last cell which we set to minus 1\n]\n</code></pre>\n\n<p>This code is my pride and joy, it basically just stores your input and prints it out when you press enter, which may not sound like a big deal, but in brainfuck it obviously becomes much more complex than it sounds!</p>\n\n<p><center>\n<a href=\"https://github.com/ZombieHippie/python-brainfuck-interpreter\">Enjoy the source on Github</a>\n</center></p>"
+        },
+        "How-I-setup-my-DNS-for-node-apps": {
+            "description": "Use CNAME * @ to direct all subdomains to the @ server, and other insights on host vhosts and servers are recognized by your nameserver.",
+            "title": "How I setup my DNS for node apps",
+            "slug": "How-I-setup-my-DNS-for-node-apps",
+            "article_script": "",
+            "article_styles": "",
+            "date": 1412898293643,
+            "author": "C"
+        }
+    },
+    "users": {
+        "C": {
+            "name": "C",
+            "salt": "G5h2ZcZXR+veTHE8gs7XQO+zcIAc+HeTFBIF8kIC/rraErZLHbJHYBINzJj7jlIzWtv7FkAaljLptwQdOatWgIIHdkZqiOnTtsxbT8nycupSPdy5yXm1yZmSUBuShAy6gVF3FhLiUmoDbqvAzLCOe32g+xB7lWDI1Riznei9NTs=",
+            "hash": "7Qw0Q8HY+jGA8p/Qfc2MxSa2utcy13or+0XNjJNxooh/JQ20CTcSQDEUR1PB7Y3gAj8XimccXSED9ZcBafmKxlTy4N0pP14SHb2/o6Eo9QbNJyfIQhuavkBc9Ekz+FfHXezapW9GC/sY9Ame/1KvFuz8nmCZyTyhL8Dy+598RaI="
+        }
+    }
+}

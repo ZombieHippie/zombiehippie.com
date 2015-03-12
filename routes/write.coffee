@@ -27,6 +27,8 @@ module.exports = class Write
 			render()
 	post: (req,res) =>
 		return res.redirect('/') if not req.session.user
+		if not (req.body.slug and req.body.slug.length)
+			req.body.slug = req.body.title.replace(/[^\d\w\s\-_]+/g, "").replace(/\s+/g, "-")
 		@write req.body, req.session.user.name, (err, post)->
 			console.log {err} if err
 			if post
