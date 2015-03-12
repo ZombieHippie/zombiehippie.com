@@ -1,5 +1,6 @@
 node_modules
-static
+static/*
 *.log
 *.cache.json
 data
+!static/robots.txt
