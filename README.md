@@ -1,20 +1,17 @@
-Everything here
+Blogging platform
 =========
 
-Will resemble current web portfolio:
-![old mockup](http://zombiehippie.com/projects/portfolio/portfolio-design-mobile-mockup.jpg "zombiehippie.com")
+## Features:
 
-##Features:
-  
-  * Register users with key and password
+  * Use per article scripts/styles for demonstration
+  * Register users with username and hashed password
   * Edit articles using CodeMirror in Markdown
   * See article preview as you type
-  * Use article unique scripts/styles
 
 ![Imgur-1](http://i.imgur.com/6a6I5RH.png "Editor page")
 ![Imgur-2](http://i.imgur.com/ynOh1db.png "Article page")
 
-##Live Preview
+## Live Preview
 This is an example of a working live preview where the author can make different 
 editable code snippets that will change the page in real time.
 
@@ -39,7 +36,7 @@ editable code snippets that will change the page in real time.
     }
     ```
 
-##Article Images
+## Article Images
 
 You can upload files on the writer page which enables you to use this syntax
 to display images that are in the article's data folder.
